@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #FF7800;
+  --brand-600: #E66B00;
+  --ink-950: #070808;
+  --ink-900: #0B0D0E;
+  --ink-800: #111416;
+  --ink-700: #171B1E;
+}
+
+html, body {
+  background: #070808;
+  color: #EEF1F3;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: #FF7800; color: #070808; }
+
+/* Subtle scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0B0D0E; }
+::-webkit-scrollbar-thumb { background: #2A3036; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #FF7800; }
+
+@layer utilities {
+  .text-gradient-brand {
+    background: linear-gradient(90deg, #FFB070 0%, #FF7800 50%, #FFB070 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: -1px -1px;
+  }
+  .bg-dotted {
+    background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+            mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+  }
+  .ring-brand-subtle {
+    box-shadow: inset 0 0 0 1px rgba(255,120,0,0.18);
+  }
+}
+
+/* hover shimmer for service cards */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.card-shine::before {
+  content: "";
+  position: absolute; inset: -1px;
+  background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(255,120,0,0.18), transparent 40%);
+  opacity: 0; transition: opacity .35s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+.card-shine:hover::before { opacity: 1; }
