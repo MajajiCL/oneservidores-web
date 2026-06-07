@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { TopBar } from "@/components/topbar";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://oneservidores.cl"),
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es" className="dark">
       <body className="bg-ink-950 text-ink-50 antialiased">
+        <SmoothScroll />
         <TopBar />
         <Header />
         <main>{children}</main>
