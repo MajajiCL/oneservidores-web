@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Linkedin, Twitter, MapPin, Phone, Mail, ShieldCheck } from "lucide-react";
 import { site } from "@/lib/site";
+import { asset } from "@/lib/paths";
 
 const cols = [
   {
@@ -48,7 +49,7 @@ export function Footer() {
       <div className="container py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">
-            <Image src="/logo-white.png" alt={site.name} width={200} height={50} className="h-9 w-auto" />
+            <Image src={asset("/logo-white.png")} alt={site.name} width={200} height={50} className="h-9 w-auto" />
             <p className="mt-5 text-[14px] text-ink-200 leading-relaxed max-w-sm">
               {site.description}
             </p>

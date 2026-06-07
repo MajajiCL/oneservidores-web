@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 import { nav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import { asset } from "@/lib/paths";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -31,7 +32,7 @@ export function Header() {
       <div className="container flex items-center justify-between h-16 lg:h-20">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/logo-white.png"
+            src={asset("/logo-white.png")}
             alt={site.name}
             width={180}
             height={45}

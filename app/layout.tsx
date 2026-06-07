@@ -15,10 +15,10 @@ export const metadata: Metadata = {
   description: site.description,
   icons: {
     icon: [
-      { url: "/favicon-32x32.png", sizes: "32x32" },
-      { url: "/favicon-192x192.png", sizes: "192x192" }
+      { url: `${process.env.NODE_ENV === "production" ? "/oneservidores-web" : ""}/favicon-32x32.png`, sizes: "32x32" },
+      { url: `${process.env.NODE_ENV === "production" ? "/oneservidores-web" : ""}/favicon-192x192.png`, sizes: "192x192" }
     ],
-    apple: "/apple-touch-icon.png"
+    apple: `${process.env.NODE_ENV === "production" ? "/oneservidores-web" : ""}/apple-touch-icon.png`
   },
   openGraph: {
     title: `${site.name} — ${site.tagline}`,
