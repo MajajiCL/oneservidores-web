@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { AuroraBg } from "./aurora-bg";
 import { MagneticBtn } from "./magnetic-btn";
 import { SplitText } from "./split-text";
-import { ThreeRack } from "./three-rack";
+import { HeroIsoIllustration } from "./hero-iso";
 
 export function Hero() {
   return (
@@ -79,9 +79,9 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: 3D rack */}
+          {/* Right: isometric SVG illustration */}
           <div className="lg:col-span-6 relative">
-            <ThreeRack />
+            <HeroIsoIllustration />
           </div>
         </div>
       </div>
