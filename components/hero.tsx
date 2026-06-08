@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { AuroraBg } from "./aurora-bg";
 import { MagneticBtn } from "./magnetic-btn";
 import { SplitText } from "./split-text";
-import { SplineScene } from "./spline-scene";
+import { ConstellationHero } from "./constellation";
 
 export function Hero() {
   return (
@@ -79,9 +79,9 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: Spline 3D scene */}
+          {/* Right: constellation 3D scene with glass UI */}
           <div className="lg:col-span-6 relative">
-            <SplineScene />
+            <ConstellationHero />
           </div>
         </div>
       </div>
