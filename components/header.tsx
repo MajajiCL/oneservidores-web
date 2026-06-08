@@ -30,7 +30,7 @@ export function Header() {
       )}
     >
       <div className="container flex items-center justify-between h-16 lg:h-20">
-        <Link href="/" className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3 shrink-0">
           <Image
             src={asset("/logo-white.png")}
             alt={site.name}
@@ -39,8 +39,8 @@ export function Header() {
             priority
             className="h-8 w-auto lg:h-9"
           />
-          <span className="hidden md:inline-flex items-center gap-1 rounded-pill border border-white/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-[0.18em] text-slate">
-            <span className="text-brand">·</span> EST 2014
+          <span className="hidden md:inline-flex items-center gap-1 rounded-pill border border-white/10 px-2.5 py-1 text-[9.5px] font-mono uppercase tracking-[0.20em] text-slate whitespace-nowrap">
+            <span className="h-1 w-1 rounded-full bg-brand" /> EST 2014
           </span>
         </Link>
 
@@ -57,12 +57,12 @@ export function Header() {
               <Link
                 href={item.href}
                 className={cn(
-                  "px-3.5 py-2 rounded-pill text-body-sm font-medium inline-flex items-center gap-1.5",
+                  "px-3 py-2 rounded-pill text-[13.5px] font-medium inline-flex items-center gap-1 whitespace-nowrap",
                   "text-bone-white/80 hover:text-bone-white hover:bg-white/5 transition"
                 )}
               >
                 {item.label}
-                {item.children && <ChevronDown size={13} className="opacity-50" />}
+                {item.children && <ChevronDown size={12} className="opacity-50" />}
               </Link>
 
               {item.children && openMega === item.label && (
@@ -87,16 +87,16 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-2 shrink-0">
           <Link
             href={site.contact.portal}
-            className="px-5 py-2 rounded-pill text-body-sm font-medium border border-storm-gray text-bone-white hover:border-brand hover:shadow-glowSoft transition"
+            className="px-5 py-2 rounded-pill text-body-sm font-medium border border-storm-gray text-bone-white hover:border-brand hover:shadow-glowSoft transition whitespace-nowrap"
           >
             Mi panel
           </Link>
           <Link
             href="/cotizar"
-            className="px-5 py-2 rounded-pill text-body-sm font-semibold bg-void border border-bone-white text-bone-white hover:border-brand hover:bg-brand/10 hover:shadow-glowSoft transition inline-flex items-center gap-1.5"
+            className="px-5 py-2 rounded-pill text-body-sm font-semibold bg-void border border-bone-white text-bone-white hover:border-brand hover:bg-brand/10 hover:shadow-glowSoft transition inline-flex items-center gap-1.5 whitespace-nowrap"
           >
             Cotizar <ArrowRight size={13} />
           </Link>
