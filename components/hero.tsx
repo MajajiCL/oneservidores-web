@@ -77,18 +77,18 @@ export function Hero() {
         >
           <Link
             href="/cotizar"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-pill bg-bone-white text-void font-semibold hover:bg-brand hover:text-void hover:shadow-glow transition text-body-sm"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-pill bg-bone-white text-void font-semibold hover:bg-brand hover:text-void hover:shadow-glow transition text-body-sm whitespace-nowrap"
           >
             Empezar ahora <ArrowRight size={15} />
           </Link>
           <Link
             href="/servidores"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-pill border border-storm-gray bg-transparent text-bone-white hover:border-brand hover:shadow-glowSoft transition text-body-sm font-medium"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-pill border border-storm-gray bg-transparent text-bone-white hover:border-brand hover:shadow-glowSoft transition text-body-sm font-medium whitespace-nowrap"
           >
-            <span className="inline-flex items-center justify-center h-5 w-5 rounded-full border border-bone-white">
+            <span className="inline-flex items-center justify-center h-5 w-5 rounded-full border border-bone-white shrink-0">
               <Play size={9} className="fill-bone-white text-bone-white ml-0.5" />
             </span>
-            Ver tour del datacenter
+            Ver el datacenter
           </Link>
         </motion.div>
 
