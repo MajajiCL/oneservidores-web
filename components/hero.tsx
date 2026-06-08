@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { AuroraBg } from "./aurora-bg";
 import { MagneticBtn } from "./magnetic-btn";
 import { SplitText } from "./split-text";
-import { HeroIsoIllustration } from "./hero-iso";
+import { SplineScene } from "./spline-scene";
 
 export function Hero() {
   return (
@@ -79,9 +79,9 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: isometric SVG illustration */}
+          {/* Right: Spline 3D scene */}
           <div className="lg:col-span-6 relative">
-            <HeroIsoIllustration />
+            <SplineScene />
           </div>
         </div>
       </div>

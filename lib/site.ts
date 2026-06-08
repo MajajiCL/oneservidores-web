@@ -4,6 +4,9 @@ export const site = {
   tagline: "Infraestructura cloud que no descansa.",
   description:
     "Datacenter Tier III en Chile y Argentina. VPS KVM y LXC, servidores dedicados, web hosting cPanel, dominios y colocation con red de 1 Gbps a 10 Gbps.",
+  // Spline 3D scene URL — to change scene, browse community.spline.design,
+  // copy any "scene.splinecode" URL and paste here.
+  splineSceneUrl: "https://prod.spline.design/bPyo53wTrYqJgajV/scene.splinecode",
   contact: {
     phones: ["+56 2 2840 2574", "+56 9 7155 0409"],
     email: "contacto@oneservidores.cl",
