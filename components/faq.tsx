@@ -14,29 +14,32 @@ type Props = {
 export function FAQ({ title = "Preguntas frecuentes", items }: Props) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="relative">
+    <section className="relative bg-white">
       <div className="container py-20 lg:py-24">
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-4">
-            <div className="text-[12.5px] uppercase tracking-[0.16em] text-brand font-semibold">FAQ</div>
-            <h2 className="mt-3 text-[28px] lg:text-[36px] font-extrabold tracking-tight leading-[1.1] text-white">
+            <div className="text-[12px] uppercase tracking-[0.18em] text-brand font-bold">FAQ</div>
+            <h2 className="mt-3 text-[28px] lg:text-[36px] font-extrabold tracking-tight leading-[1.1] text-ink-900">
               {title}
             </h2>
-            <p className="mt-4 text-[14.5px] text-ink-200 leading-relaxed">
+            <p className="mt-4 text-[14.5px] text-ink-500 leading-relaxed">
               ¿No encuentras tu pregunta? Escríbenos y te respondemos personalmente, sin formularios eternos.
             </p>
           </div>
-          <div className="lg:col-span-8 space-y-2">
+          <div className="lg:col-span-8 space-y-2.5">
             {items.map((it, i) => {
               const isOpen = open === i;
               return (
                 <Reveal key={it.q} delay={i * 0.04}>
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="w-full text-left rounded-xl border border-white/10 bg-ink-900/60 hover:border-white/20 transition"
+                    className={
+                      "w-full text-left rounded-xl border bg-white transition " +
+                      (isOpen ? "border-brand/40 shadow-card" : "border-ink-200 hover:border-ink-300")
+                    }
                   >
                     <div className="flex items-center justify-between px-5 py-4">
-                      <span className="text-[14.5px] font-semibold text-white">{it.q}</span>
+                      <span className="text-[14.5px] font-semibold text-ink-900">{it.q}</span>
                       <ChevronDown
                         size={18}
                         className={"text-brand transition-transform " + (isOpen ? "rotate-180" : "")}
@@ -44,9 +47,9 @@ export function FAQ({ title = "Preguntas frecuentes", items }: Props) {
                     </div>
                     <div
                       className="overflow-hidden transition-all duration-300 ease-in-out"
-                      style={{ maxHeight: isOpen ? 220 : 0 }}
+                      style={{ maxHeight: isOpen ? 240 : 0 }}
                     >
-                      <div className="px-5 pb-4 text-[13.5px] text-ink-200 leading-relaxed">{it.a}</div>
+                      <div className="px-5 pb-4 text-[13.5px] text-ink-600 leading-relaxed">{it.a}</div>
                     </div>
                   </button>
                 </Reveal>

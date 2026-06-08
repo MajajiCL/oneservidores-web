@@ -24,33 +24,43 @@ export const nav = [
     label: "Hosting",
     href: "/hosting",
     children: [
-      { label: "Web Hosting cPanel",   href: "/hosting/cpanel",   desc: "Sitios y correo con LiteSpeed + LSCache" },
-      { label: "WordPress Optimizado", href: "/hosting/wordpress",desc: "CyberPanel + OpenLiteSpeed para WP" },
-      { label: "Reseller Hosting",     href: "/hosting/reseller", desc: "Revende con WHM y marca blanca" },
-      { label: "Dominios",             href: "/dominios",         desc: ".cl .com .net .com.ar y más" }
+      { label: "Web Hosting cPanel",     href: "/hosting/cpanel",            desc: "Sitios y correo con LiteSpeed + LSCache" },
+      { label: "Hosting High Performance", href: "/hosting/high-performance",desc: "NVMe afinado para picos de tráfico" },
+      { label: "Hosting Windows",        href: "/hosting/windows",           desc: "Plesk con ASP.NET y MSSQL" },
+      { label: "WordPress Optimizado",   href: "/hosting/wordpress",         desc: "CyberPanel + OpenLiteSpeed para WP" },
+      { label: "Reseller Hosting",       href: "/hosting/reseller",          desc: "Revende con WHM y marca blanca" },
+      { label: "Dominios",               href: "/dominios",                  desc: ".cl .com .net .com.ar y más" }
     ]
   },
   {
     label: "Servidores",
     href: "/servidores",
     children: [
-      { label: "VPS KVM Linux",        href: "/vps/kvm",  desc: "Virtualización completa, root real" },
-      { label: "VPS LXC Linux",        href: "/vps/lxc",  desc: "Contenedores rápidos y livianos" },
-      { label: "Servidores Dedicados", href: "/dedicados", desc: "Hardware exclusivo en Chile" },
+      { label: "VPS KVM Linux",        href: "/vps/kvm",    desc: "Virtualización completa, root real" },
+      { label: "VPS LXC Linux",        href: "/vps/lxc",    desc: "Contenedores rápidos y livianos" },
+      { label: "Servidores Dedicados", href: "/dedicados",  desc: "Hardware exclusivo en Chile" },
       { label: "Colocation / Housing", href: "/colocation", desc: "Alojamiento de tu propio hardware" }
     ]
   },
   {
-    label: "Datacenter",
-    href: "/datacenter",
+    label: "Streaming",
+    href: "/streaming",
     children: [
-      { label: "Conectividad",  href: "/datacenter/red",        desc: "1 Gbps a 10 Gbps por servidor" },
-      { label: "Operación 24×7",href: "/datacenter/noc",        desc: "Monitoreo, NOC y soporte continuo" },
-      { label: "Seguridad",     href: "/datacenter/seguridad",  desc: "Anti-DDoS, control de acceso, redundancia" }
+      { label: "Audio Streaming",      href: "/streaming/audio", desc: "Radio online: SHOUTcast, Icecast, autoDJ" },
+      { label: "Video Streaming",      href: "/streaming/video", desc: "Live, VOD y RTMP con ancho de banda real" }
     ]
   },
-  { label: "Soporte",  href: "/soporte" },
-  { label: "Contacto", href: "/contacto" }
+  {
+    label: "Servicios",
+    href: "/servicios",
+    children: [
+      { label: "Asesorías",            href: "/servicios/asesorias",  desc: "Consultoría tecnológica y arquitectura" },
+      { label: "Ingeniería",           href: "/servicios/ingenieria", desc: "Implementación, migración y hardening" },
+      { label: "Seguridad",            href: "/servicios/seguridad",  desc: "WAF, anti-DDoS, monitoreo gestionado" }
+    ]
+  },
+  { label: "Datacenter", href: "/datacenter" },
+  { label: "Contacto",   href: "/contacto" }
 ];
 
 export const products = [

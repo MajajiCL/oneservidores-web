@@ -7,55 +7,52 @@
 :root {
   --brand: #FF7800;
   --brand-600: #E66B00;
-  --ink-950: #070808;
-  --ink-900: #0B0D0E;
-  --ink-800: #111416;
-  --ink-700: #171B1E;
+  --ink-900: #0F172A;
+  --ink-700: #334155;
+  --ink-500: #64748B;
+  --bg: #FFFFFF;
+  --bg-soft: #F4F6F9;
 }
 
 html, body {
-  background: #070808;
-  color: #EEF1F3;
+  background: #FFFFFF;
+  color: #0F172A;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-::selection { background: #FF7800; color: #070808; }
+::selection { background: #FF7800; color: #FFFFFF; }
 
-/* Subtle scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #0B0D0E; }
-::-webkit-scrollbar-thumb { background: #2A3036; border-radius: 6px; }
+::-webkit-scrollbar-track { background: #F4F6F9; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: #FF7800; }
 
 @layer utilities {
   .text-gradient-brand {
-    background: linear-gradient(90deg, #FFB070 0%, #FF7800 50%, #FFB070 100%);
+    background: linear-gradient(90deg, #FF7800 0%, #FFB070 60%, #FF7800 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .bg-grid {
+  .bg-grid-soft {
     background-image:
-      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
     background-size: 56px 56px;
     background-position: -1px -1px;
   }
-  .bg-dotted {
-    background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+  .bg-dotted-soft {
+    background-image: radial-gradient(rgba(15,23,42,0.10) 1px, transparent 1px);
     background-size: 22px 22px;
   }
   .mask-fade-y {
     -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
             mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
   }
-  .ring-brand-subtle {
-    box-shadow: inset 0 0 0 1px rgba(255,120,0,0.18);
-  }
 }
 
-/* hover shimmer for service cards */
+/* Hover shimmer for cards on light background */
 .card-shine {
   position: relative;
   overflow: hidden;
@@ -64,9 +61,16 @@ html, body {
 .card-shine::before {
   content: "";
   position: absolute; inset: -1px;
-  background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(255,120,0,0.18), transparent 40%);
+  background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(255,120,0,0.10), transparent 40%);
   opacity: 0; transition: opacity .35s ease;
   z-index: 0;
   pointer-events: none;
 }
 .card-shine:hover::before { opacity: 1; }
+
+/* Dotted connector for hub diagram */
+.hub-line {
+  background-image: linear-gradient(90deg, rgba(15,23,42,0.18) 50%, transparent 50%);
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}

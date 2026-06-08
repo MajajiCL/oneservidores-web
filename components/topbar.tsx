@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 
 export function TopBar() {
   return (
-    <div className="hidden lg:block bg-ink-900/80 border-b border-white/5 text-[12.5px] text-ink-200">
+    <div className="hidden lg:block bg-ink-50 border-b border-ink-200 text-[12.5px] text-ink-600">
       <div className="container flex items-center justify-between h-9">
         <div className="flex items-center gap-5">
           <span className="inline-flex items-center gap-1.5">
@@ -21,17 +21,16 @@ export function TopBar() {
         </div>
         <div className="flex items-center gap-5">
           <span className="inline-flex items-center gap-1.5">
-            <ShieldCheck size={13} className="text-brand" />
-            Soporte 24 × 7 — NOC en línea
+            <Globe2 size={13} className="text-ink-400" /> ES
           </span>
           <a
             href={site.contact.portal}
-            className="inline-flex items-center gap-1 text-ink-100 hover:text-brand transition"
+            className="inline-flex items-center gap-1 text-ink-700 hover:text-brand transition"
           >
-            Portal de clientes <ChevronRight size={12} />
+            Acceso Clientes <ChevronRight size={12} />
           </a>
-          <span className="inline-flex items-center gap-1.5 text-ink-300">
-            <Globe2 size={13} /> ES
+          <span className="inline-flex items-center gap-1.5 text-ink-700">
+            <ShieldCheck size={13} className="text-brand" /> Soporte 24×7
           </span>
         </div>
       </div>
