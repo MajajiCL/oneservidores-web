@@ -1,7 +1,8 @@
 import { Hero } from "@/components/hero";
 import { Metrics } from "@/components/metrics";
 import { BentoCapabilities } from "@/components/bento-capabilities";
-import { Bandwidth } from "@/components/bandwidth";
+import { ComparePricing } from "@/components/compare-pricing";
+import { DatacenterTour } from "@/components/dc-tour";
 import { Principles } from "@/components/principles";
 import { Sectors } from "@/components/sectors";
 import { Spotlight } from "@/components/spotlight";
@@ -15,7 +16,8 @@ export default function Home() {
       <Hero />
       <Metrics />
       <BentoCapabilities />
-      <Bandwidth />
+      <ComparePricing />
+      <DatacenterTour />
       <Principles />
       <Sectors />
       <Spotlight />
