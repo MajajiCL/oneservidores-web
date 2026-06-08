@@ -1,248 +1,267 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, ContactShadows, Float, RoundedBox, Text } from "@react-three/drei";
-import { useMemo, useRef } from "react";
+import { ContactShadows, Float, RoundedBox, Environment } from "@react-three/drei";
+import { useRef } from "react";
 import * as THREE from "three";
 
 const BRAND = "#FF7800";
-const BRAND_DIM = "#FFA94D";
-const CHASSIS = "#101725";
-const CHASSIS_2 = "#1B2333";
-const RAIL = "#2A3A52";
-const STEEL = "#94A3B8";
+const BRAND_SOFT = "#FFB070";
+const BRAND_PASTEL = "#FFE4C2";
+const WHITE = "#FFFFFF";
+const FACE = "#F1F5F9";
+const FACE_2 = "#E2E8F0";
+const EDGE = "#CBD5E1";
 
-function ServerUnit({ y, variant = 0 }: { y: number; variant?: number }) {
-  const led1 = useRef<THREE.Mesh>(null!);
-  const led2 = useRef<THREE.Mesh>(null!);
-  const led3 = useRef<THREE.Mesh>(null!);
-
-  useFrame((s) => {
-    const t = s.clock.elapsedTime + y * 11;
-    const a = (Math.sin(t * 1.8) + 1) / 2;
-    const b = (Math.sin(t * 2.7 + 1.7) + 1) / 2;
-    const c = (Math.sin(t * 3.4 + 0.4) + 1) / 2;
-    (led1.current.material as THREE.MeshStandardMaterial).emissiveIntensity = 1.0 + a * 1.6;
-    (led2.current.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.6 + b * 1.4;
-    (led3.current.material as THREE.MeshStandardMaterial).emissiveIntensity = 0.4 + c * 1.0;
-  });
-
-  // 3 variant designs: storage unit, network switch, blade
-  return (
-    <group position={[0, y, 0]}>
-      {/* main chassis */}
-      <RoundedBox args={[2.2, 0.18, 0.95]} radius={0.015} smoothness={3} castShadow receiveShadow>
-        <meshStandardMaterial color={CHASSIS_2} roughness={0.45} metalness={0.6} />
-      </RoundedBox>
-
-      {/* front face inset (darker) */}
-      <mesh position={[0, 0, 0.476]}>
-        <boxGeometry args={[2.18, 0.16, 0.012]} />
-        <meshStandardMaterial color={CHASSIS} roughness={0.3} metalness={0.7} />
-      </mesh>
-
-      {/* brand bar on left */}
-      <mesh position={[-1.04, 0, 0.485]}>
-        <boxGeometry args={[0.03, 0.13, 0.012]} />
-        <meshStandardMaterial color={BRAND} emissive={BRAND} emissiveIntensity={1.2} toneMapped={false} />
-      </mesh>
-
-      {/* LEDs cluster */}
-      <mesh ref={led1} position={[-0.95, 0.04, 0.49]}>
-        <boxGeometry args={[0.045, 0.045, 0.015]} />
-        <meshStandardMaterial color={BRAND} emissive={BRAND} emissiveIntensity={1.4} toneMapped={false} />
-      </mesh>
-      <mesh ref={led2} position={[-0.95, -0.04, 0.49]}>
-        <boxGeometry args={[0.045, 0.045, 0.015]} />
-        <meshStandardMaterial color={BRAND_DIM} emissive={BRAND_DIM} emissiveIntensity={1.0} toneMapped={false} />
-      </mesh>
-      <mesh ref={led3} position={[-0.88, 0, 0.49]}>
-        <boxGeometry args={[0.025, 0.025, 0.012]} />
-        <meshStandardMaterial color={"#FFC785"} emissive={"#FFC785"} emissiveIntensity={0.8} toneMapped={false} />
-      </mesh>
-
-      {/* drive bays / ports — varies by unit */}
-      {variant === 0 && (
-        // Storage bays
-        Array.from({ length: 8 }).map((_, i) => (
-          <mesh key={i} position={[-0.7 + i * 0.18, 0, 0.49]}>
-            <boxGeometry args={[0.15, 0.11, 0.012]} />
-            <meshStandardMaterial color={"#3B475E"} roughness={0.5} metalness={0.55} />
-          </mesh>
-        ))
-      )}
-      {variant === 1 && (
-        // Network ports
-        <>
-          {Array.from({ length: 12 }).map((_, i) => (
-            <mesh key={i} position={[-0.55 + (i % 6) * 0.16 + (i >= 6 ? 0.55 : 0), 0.025 + (i % 2 === 0 ? 0 : -0.05), 0.49]}>
-              <boxGeometry args={[0.09, 0.04, 0.012]} />
-              <meshStandardMaterial color={"#0A1019"} roughness={0.4} metalness={0.5} />
-            </mesh>
-          ))}
-          {/* small LEDs per port */}
-          {Array.from({ length: 4 }).map((_, i) => (
-            <mesh key={`pl${i}`} position={[-0.45 + i * 0.6, 0.04, 0.49]}>
-              <boxGeometry args={[0.012, 0.012, 0.008]} />
-              <meshStandardMaterial color={"#FFA94D"} emissive={"#FFA94D"} emissiveIntensity={0.8} toneMapped={false} />
-            </mesh>
-          ))}
-        </>
-      )}
-      {variant === 2 && (
-        // Blades — vertical slits
-        Array.from({ length: 6 }).map((_, i) => (
-          <mesh key={i} position={[-0.55 + i * 0.22, 0, 0.49]}>
-            <boxGeometry args={[0.16, 0.14, 0.012]} />
-            <meshStandardMaterial color={"#1F2A3F"} roughness={0.5} metalness={0.55} />
-          </mesh>
-        ))
-      )}
-
-      {/* handle right */}
-      <mesh position={[1.0, 0, 0.49]}>
-        <boxGeometry args={[0.07, 0.05, 0.025]} />
-        <meshStandardMaterial color={STEEL} metalness={0.85} roughness={0.25} />
-      </mesh>
-    </group>
-  );
-}
-
-function Rack() {
-  const group = useRef<THREE.Group>(null!);
-
+/* --- Clean isometric server tower (illustrative, light) --- */
+function ServerTower({ position = [0, 0, 0] as [number, number, number] }) {
+  const blink = useRef<THREE.Mesh>(null!);
   useFrame((s) => {
     const t = s.clock.elapsedTime;
-    // gentle rotation showing front + right side
-    group.current.rotation.y = -0.55 + Math.sin(t * 0.22) * 0.35;
-    group.current.position.y = Math.sin(t * 0.6) * 0.04;
+    const m = blink.current.material as THREE.MeshStandardMaterial;
+    m.emissiveIntensity = 1.0 + (Math.sin(t * 1.8) + 1) * 0.7;
   });
 
-  // 14 server units stacked
-  const slotsY = useMemo(() => {
-    const ys: number[] = [];
-    const step = 0.25;
-    const count = 13;
-    const totalHeight = (count - 1) * step;
-    for (let i = 0; i < count; i++) ys.push(-totalHeight / 2 + i * step);
-    return ys;
-  }, []);
-
-  const RAIL_H = 4.0;
-  const HALF_W = 1.18;
-  const HALF_D = 0.55;
-
   return (
-    <group ref={group}>
-      {/* 4 corner vertical rails */}
-      {[
-        [-HALF_W, HALF_D],
-        [HALF_W,  HALF_D],
-        [-HALF_W, -HALF_D],
-        [HALF_W,  -HALF_D]
-      ].map(([x, z], i) => (
-        <mesh key={i} position={[x, 0, z]} castShadow>
-          <boxGeometry args={[0.09, RAIL_H, 0.09]} />
-          <meshStandardMaterial color={RAIL} metalness={0.65} roughness={0.35} />
-        </mesh>
-      ))}
-
-      {/* top plate */}
-      <RoundedBox args={[2.55, 0.12, 1.25]} radius={0.02} smoothness={3} position={[0, RAIL_H / 2 + 0.06, 0]} castShadow>
-        <meshStandardMaterial color={CHASSIS} metalness={0.55} roughness={0.45} />
+    <group position={position}>
+      {/* Main body */}
+      <RoundedBox args={[1.4, 2.6, 1.0]} radius={0.08} smoothness={4} castShadow receiveShadow>
+        <meshStandardMaterial color={WHITE} roughness={0.45} metalness={0.05} />
       </RoundedBox>
 
-      {/* cooling fans on top */}
-      {[-0.7, 0, 0.7].map((x, i) => (
-        <group key={i} position={[x, RAIL_H / 2 + 0.13, 0]}>
+      {/* Top cap (slight darker) */}
+      <RoundedBox args={[1.42, 0.05, 1.02]} radius={0.04} smoothness={3} position={[0, 1.33, 0]} castShadow>
+        <meshStandardMaterial color={FACE_2} roughness={0.5} />
+      </RoundedBox>
+
+      {/* Front face panels — 3 horizontal sections */}
+      {[0.8, 0.0, -0.8].map((y, i) => (
+        <group key={i} position={[0, y, 0.501]}>
+          {/* recessed face */}
           <mesh>
-            <cylinderGeometry args={[0.18, 0.18, 0.02, 24]} />
-            <meshStandardMaterial color={"#0A1019"} metalness={0.6} roughness={0.4} />
+            <boxGeometry args={[1.18, 0.55, 0.01]} />
+            <meshStandardMaterial color={FACE} roughness={0.6} />
           </mesh>
-          <mesh position={[0, 0.012, 0]}>
-            <cylinderGeometry args={[0.14, 0.14, 0.006, 24]} />
-            <meshStandardMaterial color={"#1B2333"} metalness={0.4} roughness={0.6} />
+          {/* small slits */}
+          {Array.from({ length: 5 }).map((_, j) => (
+            <mesh key={j} position={[-0.4 + j * 0.2, 0.06, 0.008]}>
+              <boxGeometry args={[0.14, 0.025, 0.005]} />
+              <meshStandardMaterial color={EDGE} roughness={0.7} />
+            </mesh>
+          ))}
+          {/* status LED */}
+          <mesh
+            ref={i === 0 ? blink : undefined}
+            position={[0.46, -0.16, 0.012]}
+          >
+            <boxGeometry args={[0.06, 0.06, 0.008]} />
+            <meshStandardMaterial
+              color={BRAND}
+              emissive={BRAND}
+              emissiveIntensity={i === 0 ? 1.4 : 0.6}
+              toneMapped={false}
+            />
           </mesh>
-          {/* Spinning blades */}
-          <FanBlades />
+          {/* badge */}
+          <mesh position={[-0.45, -0.16, 0.008]}>
+            <boxGeometry args={[0.1, 0.07, 0.005]} />
+            <meshStandardMaterial color={BRAND_PASTEL} roughness={0.5} />
+          </mesh>
         </group>
       ))}
 
-      {/* bottom plate */}
-      <RoundedBox args={[2.55, 0.12, 1.25]} radius={0.02} smoothness={3} position={[0, -RAIL_H / 2 - 0.06, 0]} castShadow>
-        <meshStandardMaterial color={CHASSIS} metalness={0.55} roughness={0.45} />
-      </RoundedBox>
+      {/* Side accent bar (right edge of front face) */}
+      <mesh position={[0.7, 0, 0.503]}>
+        <boxGeometry args={[0.04, 2.4, 0.005]} />
+        <meshStandardMaterial color={EDGE} roughness={0.4} />
+      </mesh>
 
-      {/* Top brand bar with OneServidores text */}
-      <group position={[0, RAIL_H / 2 - 0.12, HALF_D + 0.001]}>
-        <mesh>
-          <boxGeometry args={[2.0, 0.22, 0.02]} />
-          <meshStandardMaterial color={BRAND} emissive={BRAND} emissiveIntensity={0.6} toneMapped={false} />
-        </mesh>
-        <Text
-          position={[0, 0, 0.015]}
-          fontSize={0.14}
-          color="white"
-          anchorX="center"
-          anchorY="middle"
-          fontWeight={900}
-          letterSpacing={0.05}
-        >
-          ONE SERVIDORES
-        </Text>
-      </group>
-
-      {/* Server units */}
-      {slotsY.map((y, i) => (
-        <ServerUnit key={i} y={y} variant={i % 3} />
-      ))}
-
-      {/* Subtle back panel (dark, behind units) */}
-      <mesh position={[0, 0, -HALF_D + 0.005]}>
-        <boxGeometry args={[2.3, RAIL_H - 0.4, 0.02]} />
-        <meshStandardMaterial color={"#070C16"} roughness={0.9} />
+      {/* Bottom base */}
+      <mesh position={[0, -1.31, 0]} castShadow>
+        <boxGeometry args={[1.5, 0.06, 1.1]} />
+        <meshStandardMaterial color={FACE_2} roughness={0.5} />
       </mesh>
     </group>
   );
 }
 
-function FanBlades() {
-  const ref = useRef<THREE.Mesh>(null!);
-  useFrame((_, dt) => {
-    if (ref.current) ref.current.rotation.y += dt * 6;
+/* --- Cylindrical storage stack (drum / database look) --- */
+function StorageDrum({ position = [0, 0, 0] as [number, number, number] }) {
+  const accent = useRef<THREE.Mesh>(null!);
+  useFrame((s) => {
+    const t = s.clock.elapsedTime;
+    const m = accent.current.material as THREE.MeshStandardMaterial;
+    m.emissiveIntensity = 0.4 + (Math.sin(t * 1.2 + 0.6) + 1) * 0.5;
   });
+
+  // 4 stacked disks
+  const discY = [-0.9, -0.3, 0.3, 0.9];
   return (
-    <mesh ref={ref} position={[0, 0.02, 0]}>
-      <torusGeometry args={[0.09, 0.012, 6, 16]} />
-      <meshStandardMaterial color={STEEL} metalness={0.6} roughness={0.4} />
-    </mesh>
+    <group position={position}>
+      {discY.map((y, i) => (
+        <group key={i} position={[0, y, 0]}>
+          <mesh castShadow receiveShadow>
+            <cylinderGeometry args={[0.78, 0.78, 0.42, 48]} />
+            <meshStandardMaterial color={WHITE} roughness={0.45} metalness={0.06} />
+          </mesh>
+          {/* top rim (darker) */}
+          <mesh position={[0, 0.21, 0]}>
+            <cylinderGeometry args={[0.785, 0.785, 0.02, 48]} />
+            <meshStandardMaterial color={FACE_2} roughness={0.5} />
+          </mesh>
+          {/* dot grid pattern around the side */}
+          {Array.from({ length: 14 }).map((_, j) => {
+            const a = (j / 14) * Math.PI * 1.4 - Math.PI * 0.7;
+            return (
+              <mesh
+                key={j}
+                position={[Math.cos(a) * 0.79, 0, Math.sin(a) * 0.79]}
+                rotation={[0, -a + Math.PI / 2, 0]}
+              >
+                <boxGeometry args={[0.04, 0.04, 0.01]} />
+                <meshStandardMaterial color={i === 0 ? BRAND : EDGE} roughness={0.6} />
+              </mesh>
+            );
+          })}
+          {/* brand stripe on one of the disks */}
+          {i === 1 && (
+            <mesh ref={accent} position={[0, 0, 0.785]} rotation={[0, 0, 0]}>
+              <boxGeometry args={[0.22, 0.05, 0.005]} />
+              <meshStandardMaterial color={BRAND} emissive={BRAND} emissiveIntensity={1.0} toneMapped={false} />
+            </mesh>
+          )}
+        </group>
+      ))}
+    </group>
+  );
+}
+
+/* --- Floating icon badge (like a card with an icon) --- */
+function IconBadge({
+  position,
+  color = BRAND_PASTEL,
+  iconColor = BRAND,
+  delay = 0
+}: {
+  position: [number, number, number];
+  color?: string;
+  iconColor?: string;
+  delay?: number;
+}) {
+  const group = useRef<THREE.Group>(null!);
+  useFrame((s) => {
+    const t = s.clock.elapsedTime + delay;
+    group.current.position.y = position[1] + Math.sin(t * 1.1) * 0.08;
+    group.current.rotation.z = Math.sin(t * 0.7) * 0.05;
+  });
+
+  return (
+    <group ref={group} position={position}>
+      {/* card background */}
+      <RoundedBox args={[0.7, 0.7, 0.08]} radius={0.08} smoothness={4} castShadow>
+        <meshStandardMaterial color={WHITE} roughness={0.4} />
+      </RoundedBox>
+      {/* pastel chip */}
+      <RoundedBox args={[0.42, 0.42, 0.02]} radius={0.06} smoothness={3} position={[0, 0, 0.05]}>
+        <meshStandardMaterial color={color} roughness={0.5} />
+      </RoundedBox>
+      {/* icon (abstract glyph) */}
+      <mesh position={[0, 0.04, 0.07]}>
+        <boxGeometry args={[0.18, 0.04, 0.012]} />
+        <meshStandardMaterial color={iconColor} />
+      </mesh>
+      <mesh position={[0, -0.04, 0.07]}>
+        <boxGeometry args={[0.18, 0.04, 0.012]} />
+        <meshStandardMaterial color={iconColor} />
+      </mesh>
+      <mesh position={[-0.07, 0.04, 0.075]}>
+        <boxGeometry args={[0.025, 0.025, 0.012]} />
+        <meshStandardMaterial color={WHITE} />
+      </mesh>
+      <mesh position={[-0.07, -0.04, 0.075]}>
+        <boxGeometry args={[0.025, 0.025, 0.012]} />
+        <meshStandardMaterial color={WHITE} />
+      </mesh>
+    </group>
+  );
+}
+
+function Scene() {
+  const root = useRef<THREE.Group>(null!);
+  useFrame((s) => {
+    const t = s.clock.elapsedTime;
+    root.current.rotation.y = Math.sin(t * 0.18) * 0.18;
+  });
+
+  return (
+    <group ref={root}>
+      <Float speed={1.2} rotationIntensity={0.08} floatIntensity={0.25}>
+        <group position={[-1.05, 0, 0]}>
+          <ServerTower />
+        </group>
+      </Float>
+
+      <Float speed={1.4} rotationIntensity={0.06} floatIntensity={0.3}>
+        <group position={[1.05, -0.05, 0.25]}>
+          <StorageDrum />
+        </group>
+      </Float>
+
+      {/* Floating icon badges around the scene */}
+      <Float speed={1.6} rotationIntensity={0.1} floatIntensity={0.3}>
+        <IconBadge position={[-2.0, 1.7, 0.4]} color={BRAND_PASTEL} iconColor={BRAND} delay={0} />
+      </Float>
+      <Float speed={1.3} rotationIntensity={0.1} floatIntensity={0.3}>
+        <IconBadge position={[2.4, 1.3, 0.3]} color="#EEF4FF" iconColor="#6B7DFA" delay={0.8} />
+      </Float>
+      <Float speed={1.5} rotationIntensity={0.1} floatIntensity={0.3}>
+        <IconBadge position={[-2.4, -0.4, -0.2]} color="#FFE4C2" iconColor={BRAND_SOFT} delay={1.4} />
+      </Float>
+      <Float speed={1.2} rotationIntensity={0.1} floatIntensity={0.3}>
+        <IconBadge position={[2.6, -0.6, -0.1]} color="#F1F5F9" iconColor="#475569" delay={2.0} />
+      </Float>
+    </group>
   );
 }
 
 export default function ThreeRackScene() {
   return (
-    <div className="relative h-[460px] lg:h-[580px] w-full">
+    <div className="relative h-[460px] lg:h-[560px] w-full">
       <Canvas
         shadows
         dpr={[1, 2]}
-        camera={{ position: [4.2, 1.0, 5.0], fov: 32 }}
+        camera={{ position: [3.6, 2.4, 5.0], fov: 30 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        style={{ background: "transparent" }}
       >
-        <color attach="background" args={[0, 0, 0]} />
-        <ambientLight intensity={0.55} />
-        <directionalLight position={[5, 6, 4]} intensity={1.25} castShadow shadow-mapSize={[1024, 1024]} />
-        <directionalLight position={[-4, 3, -2]} intensity={0.45} color={BRAND_DIM} />
-        <pointLight position={[2, 0, 3]} intensity={0.7} color={BRAND} distance={6} decay={2} />
-        <Environment preset="city" />
-        <Float speed={0.7} rotationIntensity={0.05} floatIntensity={0.18}>
-          <Rack />
-        </Float>
-        <ContactShadows position={[0, -2.15, 0]} opacity={0.5} scale={9} blur={2.8} far={5} />
+        <ambientLight intensity={1.0} />
+        <directionalLight
+          position={[6, 7, 4]}
+          intensity={1.4}
+          castShadow
+          shadow-mapSize={[2048, 2048]}
+          shadow-bias={-0.0005}
+        />
+        <directionalLight position={[-4, 3, -2]} intensity={0.4} color={BRAND_SOFT} />
+        <hemisphereLight args={[WHITE, BRAND_PASTEL, 0.45]} />
+        <Environment preset="apartment" />
+        <Scene />
+        <ContactShadows
+          position={[0, -1.55, 0]}
+          opacity={0.4}
+          scale={10}
+          blur={3.0}
+          far={4}
+          color={"#FF7800"}
+        />
       </Canvas>
-      {/* soft brand glow behind */}
+      {/* soft brand wash behind */}
       <div
-        className="pointer-events-none absolute inset-0 -z-10 blur-3xl opacity-70"
-        style={{ background: "radial-gradient(closest-side, rgba(255,120,0,0.30), transparent 60%)" }}
+        className="pointer-events-none absolute inset-0 -z-10 blur-3xl opacity-80"
+        style={{
+          background:
+            "radial-gradient(closest-side at 60% 50%, rgba(255,120,0,0.18), transparent 60%)"
+        }}
       />
     </div>
   );
