@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "./reveal";
-import { IllusDatacenter } from "./illustrations";
+import { CobeGlobe } from "./cobe-globe";
 
 const points = [
   "1000 Gbps Nacional y 400 Gbps Internacional por rutas redundantes",
@@ -41,10 +41,7 @@ export function Spotlight() {
           </Reveal>
 
           <Reveal delay={0.15} className="lg:col-span-6">
-            <div className="relative">
-              <div className="absolute -inset-6 bg-soft-radial blur-2xl opacity-80 pointer-events-none" />
-              <IllusDatacenter className="relative w-full h-auto max-w-[480px] mx-auto" />
-            </div>
+            <CobeGlobe />
           </Reveal>
         </div>
       </div>
