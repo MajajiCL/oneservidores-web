@@ -23,56 +23,56 @@ type Props = {
 
 export function PlansGrid({ eyebrow, title, description, plans, note }: Props) {
   return (
-    <section className="relative bg-ink-50">
-      <div className="container py-20 lg:py-24">
-        <div className="text-center max-w-2xl mx-auto">
+    <section className="relative bg-void border-t border-white/5">
+      <div className="container py-24 lg:py-28">
+        <div className="max-w-2xl">
           {eyebrow && (
-            <div className="text-[12px] uppercase tracking-[0.18em] text-brand font-bold">{eyebrow}</div>
+            <div className="font-mono text-[10.5px] uppercase tracking-[0.20em] text-brand">{eyebrow}</div>
           )}
-          <h2 className="mt-3 text-[28px] lg:text-[38px] font-extrabold tracking-tight leading-[1.1] text-ink-900">
+          <h2 className="mt-4 text-heading lg:text-heading-lg font-bold tracking-tight leading-[1.05] text-bone-white">
             {title}
           </h2>
-          {description && <p className="mt-4 text-[15.5px] text-ink-500 leading-relaxed">{description}</p>}
+          {description && <p className="mt-5 text-body text-bone-white/70 leading-relaxed">{description}</p>}
         </div>
 
-        <div className={`mt-12 grid grid-cols-1 md:grid-cols-2 ${plans.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-5`}>
+        <div className={`mt-12 grid grid-cols-1 md:grid-cols-2 ${plans.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"} gap-3`}>
           {plans.map((p, i) => (
             <Reveal key={p.name} delay={i * 0.06}>
               <div
                 className={
-                  "h-full rounded-2xl p-7 transition relative " +
+                  "relative h-full rounded-card p-7 transition-all " +
                   (p.highlight
-                    ? "border-2 border-brand bg-white shadow-glow"
-                    : "border border-ink-200 bg-white shadow-card hover:shadow-cardHover")
+                    ? "border border-brand/40 bg-gradient-to-b from-brand/10 to-transparent shadow-glow"
+                    : "border border-white/8 bg-white/[0.02] hover:border-white/20")
                 }
               >
                 {p.highlight && (
-                  <div className="absolute -top-3 left-6 inline-flex items-center gap-1 rounded-full bg-brand px-2.5 py-1 text-[10.5px] font-bold text-white uppercase tracking-wider">
-                    Más elegido
+                  <div className="absolute -top-3 left-6 inline-flex items-center rounded-pill bg-brand text-void font-mono text-[9.5px] font-bold uppercase tracking-[0.18em] px-2.5 py-1">
+                    MÁS ELEGIDO
                   </div>
                 )}
-                <div className="text-[11.5px] uppercase tracking-[0.16em] text-brand font-bold">{p.tagline}</div>
-                <div className="mt-1.5 text-[20px] font-bold text-ink-900">{p.name}</div>
-                <div className="mt-4 flex items-baseline gap-1.5">
-                  <span className="text-[32px] font-extrabold tracking-tight text-ink-900">{p.price}</span>
-                  {p.pricePeriod && <span className="text-[13px] text-ink-500">/{p.pricePeriod}</span>}
+                <div className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand">{p.tagline}</div>
+                <div className="mt-2 text-subheading font-bold text-bone-white">{p.name}</div>
+                <div className="mt-5 flex items-baseline gap-1.5">
+                  <span className="text-[34px] font-bold tracking-tight text-bone-white">{p.price}</span>
+                  {p.pricePeriod && <span className="font-mono text-[11px] text-slate uppercase tracking-wider">/{p.pricePeriod}</span>}
                 </div>
                 <Link
                   href={p.ctaHref ?? "/cotizar"}
                   className={
-                    "mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md px-4 py-2.5 text-[13.5px] font-semibold transition " +
+                    "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-pill px-4 py-2.5 text-body-sm font-semibold transition " +
                     (p.highlight
-                      ? "bg-brand text-white hover:bg-brand-600"
-                      : "border border-ink-300 text-ink-900 hover:bg-ink-50")
+                      ? "bg-bone-white text-void hover:bg-brand"
+                      : "border border-storm-gray text-bone-white hover:border-brand hover:shadow-glowSoft")
                   }
                 >
                   {p.ctaLabel ?? "Contratar"} <ArrowRight size={14} />
                 </Link>
-                <div className="mt-6 h-px bg-ink-100" />
+                <div className="mt-6 h-px bg-white/5" />
                 <ul className="mt-5 space-y-2.5">
                   {p.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-[13px] text-ink-600">
-                      <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-brand text-white">
+                    <li key={f} className="flex items-start gap-2 text-body-sm text-bone-white/75">
+                      <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-pill bg-brand/15 text-brand border border-brand/30">
                         <Check size={10} strokeWidth={3} />
                       </span>
                       {f}
@@ -84,7 +84,7 @@ export function PlansGrid({ eyebrow, title, description, plans, note }: Props) {
           ))}
         </div>
 
-        {note && <div className="mt-8 text-center text-[12.5px] text-ink-500">{note}</div>}
+        {note && <div className="mt-10 text-center font-mono text-[10.5px] uppercase tracking-[0.18em] text-slate">{note}</div>}
       </div>
     </section>
   );

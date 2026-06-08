@@ -23,28 +23,26 @@ export function Header() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all bg-white",
+        "sticky top-0 z-50 transition-all",
         scrolled
-          ? "shadow-card border-b border-ink-100"
-          : "border-b border-transparent"
+          ? "bg-void/85 backdrop-blur-xl border-b border-white/5"
+          : "bg-transparent"
       )}
     >
       <div className="container flex items-center justify-between h-16 lg:h-20">
-        <div className="flex items-center gap-3">
-          <Link href="/" className="flex items-center">
-            <Image
-              src={asset("/logo-dark.png")}
-              alt={site.name}
-              width={200}
-              height={50}
-              priority
-              className="h-8 w-auto lg:h-9"
-            />
-          </Link>
-          <span className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-soft-orange border border-brand/20 text-brand text-[11px] font-bold px-2.5 py-1 tracking-wide">
-            <span className="opacity-70 font-semibold">DESDE</span> 2014
+        <Link href="/" className="flex items-center gap-3">
+          <Image
+            src={asset("/logo-white.png")}
+            alt={site.name}
+            width={200}
+            height={50}
+            priority
+            className="h-8 w-auto lg:h-9"
+          />
+          <span className="hidden md:inline-flex items-center gap-1 rounded-pill border border-white/10 px-2.5 py-0.5 text-[10px] font-mono uppercase tracking-[0.18em] text-slate">
+            <span className="text-brand">·</span> EST 2014
           </span>
-        </div>
+        </Link>
 
         <nav
           className="hidden lg:flex items-center gap-0.5"
@@ -59,27 +57,27 @@ export function Header() {
               <Link
                 href={item.href}
                 className={cn(
-                  "px-3.5 py-2 rounded-md text-[14px] font-medium inline-flex items-center gap-1.5",
-                  "text-ink-700 hover:text-ink-900 hover:bg-ink-50 transition"
+                  "px-3.5 py-2 rounded-pill text-body-sm font-medium inline-flex items-center gap-1.5",
+                  "text-bone-white/80 hover:text-bone-white hover:bg-white/5 transition"
                 )}
               >
                 {item.label}
-                {item.children && <ChevronDown size={14} className="opacity-60" />}
+                {item.children && <ChevronDown size={13} className="opacity-50" />}
               </Link>
 
               {item.children && openMega === item.label && (
                 <div className="absolute left-0 top-full pt-3 w-[420px]">
-                  <div className="rounded-xl border border-ink-200 bg-white shadow-card p-2">
+                  <div className="rounded-card glass-strong p-2">
                     {item.children.map((child) => (
                       <Link
                         key={child.label}
                         href={child.href}
-                        className="block rounded-lg px-3 py-2.5 hover:bg-ink-50 transition group"
+                        className="block rounded-pill px-3 py-2.5 hover:bg-white/5 transition group"
                       >
-                        <div className="text-[14px] font-semibold text-ink-900 group-hover:text-brand">
+                        <div className="text-body-sm font-semibold text-bone-white group-hover:text-brand">
                           {child.label}
                         </div>
-                        <div className="text-[12.5px] text-ink-500">{child.desc}</div>
+                        <div className="text-[11.5px] text-slate mt-0.5">{child.desc}</div>
                       </Link>
                     ))}
                   </div>
@@ -92,36 +90,36 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-2">
           <Link
             href={site.contact.portal}
-            className="px-4 py-2 text-[14px] rounded-md text-ink-700 hover:text-ink-900 hover:bg-ink-50 transition"
+            className="px-5 py-2 rounded-pill text-body-sm font-medium border border-storm-gray text-bone-white hover:border-brand hover:shadow-glowSoft transition"
           >
             Mi panel
           </Link>
           <Link
             href="/cotizar"
-            className="px-4 py-2 text-[14px] rounded-md bg-brand text-white font-semibold hover:bg-brand-600 transition inline-flex items-center gap-1.5"
+            className="px-5 py-2 rounded-pill text-body-sm font-semibold bg-void border border-bone-white text-bone-white hover:border-brand hover:bg-brand/10 hover:shadow-glowSoft transition inline-flex items-center gap-1.5"
           >
-            Cotizar <ArrowRight size={14} />
+            Cotizar <ArrowRight size={13} />
           </Link>
         </div>
 
         <button
           onClick={() => setOpenMobile((v) => !v)}
-          className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-md text-ink-900"
+          className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-pill border border-white/10 text-bone-white"
           aria-label="Abrir menú"
         >
-          {openMobile ? <X size={22} /> : <Menu size={22} />}
+          {openMobile ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
       {openMobile && (
-        <div className="lg:hidden border-t border-ink-200 bg-white">
+        <div className="lg:hidden border-t border-white/5 bg-void">
           <div className="container py-4 space-y-1">
             {nav.map((item) => (
               <div key={item.label}>
                 <Link
                   href={item.href}
                   onClick={() => setOpenMobile(false)}
-                  className="block px-3 py-2.5 rounded-md text-[15px] font-medium text-ink-900 hover:bg-ink-50"
+                  className="block px-3 py-2.5 rounded-pill text-body font-medium text-bone-white hover:bg-white/5"
                 >
                   {item.label}
                 </Link>
@@ -132,7 +130,7 @@ export function Header() {
                         key={c.label}
                         href={c.href}
                         onClick={() => setOpenMobile(false)}
-                        className="block px-3 py-2 text-[14px] text-ink-600 hover:text-brand"
+                        className="block px-3 py-2 text-body-sm text-slate hover:text-brand"
                       >
                         {c.label}
                       </Link>
@@ -142,10 +140,10 @@ export function Header() {
               </div>
             ))}
             <div className="pt-3 grid grid-cols-2 gap-2">
-              <Link href={site.contact.portal} className="px-4 py-2.5 text-center text-[14px] rounded-md border border-ink-200">
+              <Link href={site.contact.portal} className="px-4 py-2.5 text-center text-body-sm rounded-pill border border-storm-gray text-bone-white">
                 Mi panel
               </Link>
-              <Link href="/cotizar" className="px-4 py-2.5 text-center text-[14px] rounded-md bg-brand text-white font-semibold">
+              <Link href="/cotizar" className="px-4 py-2.5 text-center text-body-sm rounded-pill border border-bone-white text-bone-white">
                 Cotizar
               </Link>
             </div>

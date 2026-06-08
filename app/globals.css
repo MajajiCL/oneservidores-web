@@ -1,76 +1,113 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,300;1,400;1,500&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --brand: #FF7800;
-  --brand-600: #E66B00;
-  --ink-900: #0F172A;
-  --ink-700: #334155;
-  --ink-500: #64748B;
-  --bg: #FFFFFF;
-  --bg-soft: #F4F6F9;
+  --color-void: #090909;
+  --color-bone-white: #f7f9fa;
+  --color-ash: #f0f0f0;
+  --color-slate: #6b6b6b;
+  --color-graphite: #454545;
+  --color-smoke: #828384;
+  --color-iron: #333333;
+  --color-cinder: #1a1212;
+  --color-brand: #FF7800;
+  --color-brand-glow: #FFA94D;
 }
+
+html { background: #090909; }
 
 html, body {
-  background: #FFFFFF;
-  color: #0F172A;
+  background: #090909;
+  color: #f7f9fa;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01" on, "ss02" on;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-::selection { background: #FF7800; color: #FFFFFF; }
+::selection { background: #FF7800; color: #090909; }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #F4F6F9; }
-::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 6px; }
+::-webkit-scrollbar-track { background: #090909; }
+::-webkit-scrollbar-thumb { background: #333333; border-radius: 6px; }
 ::-webkit-scrollbar-thumb:hover { background: #FF7800; }
 
 @layer utilities {
+  /* Editorial italic moment — used sparingly, max one per hero */
+  .font-editorial {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: -0.03em;
+  }
+
+  /* Mono display — airport departure board treatment, 0.20em tracking at large sizes */
+  .font-mono-display {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    letter-spacing: 0.20em;
+    font-weight: 400;
+  }
+
+  /* Outlined / stenciled text */
+  .text-outlined {
+    -webkit-text-stroke: 1px #f0f0f0;
+    color: transparent;
+  }
+
+  /* Glassmorphic panel — primary elevation pattern (no drop shadows) */
+  .glass {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.10);
+  }
+
+  .glass-strong {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+
+  /* Orchid radial ambient */
+  .bg-orchid-radial {
+    background: radial-gradient(circle closest-corner at 10% 50%, rgba(255,120,0,0.45), rgba(0,0,0,0) 55%);
+  }
+
   .text-gradient-brand {
-    background: linear-gradient(90deg, #FF7800 0%, #FFB070 60%, #FF7800 100%);
+    background: linear-gradient(90deg, #FF7800 0%, #FFA94D 50%, #FF7800 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
-  .bg-grid-soft {
-    background-image:
-      linear-gradient(rgba(15,23,42,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15,23,42,0.04) 1px, transparent 1px);
-    background-size: 56px 56px;
-    background-position: -1px -1px;
-  }
-  .bg-dotted-soft {
-    background-image: radial-gradient(rgba(15,23,42,0.10) 1px, transparent 1px);
-    background-size: 22px 22px;
-  }
+
   .mask-fade-y {
     -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
             mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
   }
+
+  /* Hairline border helper */
+  .border-hairline {
+    border-color: rgba(255,255,255,0.10);
+  }
+
+  /* Brand glow on hover for ghost buttons */
+  .ghost-hover:hover {
+    border-color: #FF7800;
+    box-shadow: 0 0 18px rgba(255,120,0,0.4);
+  }
+
+  /* Soft grid bg for sections (void-friendly) */
+  .bg-grid-void {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: -1px -1px;
+  }
 }
 
-/* Hover shimmer for cards on light background */
-.card-shine {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-}
-.card-shine::before {
-  content: "";
-  position: absolute; inset: -1px;
-  background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(255,120,0,0.10), transparent 40%);
-  opacity: 0; transition: opacity .35s ease;
-  z-index: 0;
-  pointer-events: none;
-}
-.card-shine:hover::before { opacity: 1; }
-
-/* Dotted connector for hub diagram */
-.hub-line {
-  background-image: linear-gradient(90deg, rgba(15,23,42,0.18) 50%, transparent 50%);
-  background-size: 8px 1px;
-  background-repeat: repeat-x;
-}
+/* Shimmer keyframes already in tailwind */

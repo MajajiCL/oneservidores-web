@@ -19,27 +19,27 @@ type Props = {
 export function FeatureGrid({ eyebrow, title, description, features, cols = 3 }: Props) {
   const colsClass = cols === 4 ? "lg:grid-cols-4" : cols === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3";
   return (
-    <section className="relative bg-white">
-      <div className="container py-20 lg:py-24">
-        <div className="text-center max-w-2xl mx-auto">
+    <section className="relative bg-void border-t border-white/5">
+      <div className="container py-24 lg:py-28">
+        <div className="max-w-2xl">
           {eyebrow && (
-            <div className="text-[12px] uppercase tracking-[0.18em] text-brand font-bold">{eyebrow}</div>
+            <div className="font-mono text-[10.5px] uppercase tracking-[0.20em] text-brand">{eyebrow}</div>
           )}
-          <h2 className="mt-3 text-[28px] lg:text-[38px] font-extrabold tracking-tight leading-[1.1] text-ink-900">
+          <h2 className="mt-4 text-heading lg:text-heading-lg font-bold tracking-tight leading-[1.05] text-bone-white">
             {title}
           </h2>
-          {description && <p className="mt-4 text-[15.5px] text-ink-500 leading-relaxed">{description}</p>}
+          {description && <p className="mt-5 text-body text-bone-white/70 leading-relaxed">{description}</p>}
         </div>
 
-        <div className={`mt-12 grid sm:grid-cols-2 ${colsClass} gap-5`}>
+        <div className={`mt-12 grid sm:grid-cols-2 ${colsClass} gap-3`}>
           {features.map((f, i) => (
             <Reveal key={f.title} delay={i * 0.05}>
               <ShineCard>
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-soft-orange text-brand">
-                  <f.Icon size={19} />
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-pill bg-white/5 border border-white/10 text-brand">
+                  <f.Icon size={17} />
                 </div>
-                <h3 className="mt-5 text-[16px] font-bold text-ink-900">{f.title}</h3>
-                <p className="mt-2 text-[13.5px] text-ink-500 leading-relaxed">{f.body}</p>
+                <h3 className="mt-5 text-subheading font-semibold text-bone-white tracking-tight">{f.title}</h3>
+                <p className="mt-2 text-body-sm text-bone-white/65 leading-relaxed">{f.body}</p>
               </ShineCard>
             </Reveal>
           ))}

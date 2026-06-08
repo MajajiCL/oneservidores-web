@@ -1,23 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Linkedin, Twitter, MapPin, Phone, Mail, ShieldCheck } from "lucide-react";
+import { Facebook, Linkedin, Twitter, MapPin, Phone, Mail } from "lucide-react";
 import { site } from "@/lib/site";
 import { asset } from "@/lib/paths";
 
 const cols = [
   {
-    title: "Hosting",
+    title: "HOSTING",
     links: [
-      { label: "Web Hosting cPanel",      href: "/hosting/cpanel" },
-      { label: "Hosting High Performance",href: "/hosting/high-performance" },
-      { label: "Hosting Windows",         href: "/hosting/windows" },
-      { label: "VPS WordPress",           href: "/hosting/wordpress" },
-      { label: "Reseller Hosting",        href: "/hosting/reseller" },
-      { label: "Dominios",                href: "/dominios" }
+      { label: "Web Hosting cPanel",       href: "/hosting/cpanel" },
+      { label: "High Performance",         href: "/hosting/high-performance" },
+      { label: "Windows · Plesk",          href: "/hosting/windows" },
+      { label: "WordPress · CyberPanel",   href: "/hosting/wordpress" },
+      { label: "Reseller WHM",             href: "/hosting/reseller" },
+      { label: "Dominios",                 href: "/dominios" }
     ]
   },
   {
-    title: "Servidores",
+    title: "SERVIDORES",
     links: [
       { label: "VPS KVM",        href: "/vps/kvm" },
       { label: "VPS LXC",        href: "/vps/lxc" },
@@ -26,58 +26,56 @@ const cols = [
     ]
   },
   {
-    title: "Streaming · Servicios",
+    title: "STREAMING · SERVICIOS",
     links: [
-      { label: "Audio Streaming",  href: "/streaming/audio" },
-      { label: "Video Streaming",  href: "/streaming/video" },
-      { label: "Asesorías",        href: "/servicios/asesorias" },
-      { label: "Ingeniería",       href: "/servicios/ingenieria" },
-      { label: "Seguridad",        href: "/servicios/seguridad" }
+      { label: "Audio",       href: "/streaming/audio" },
+      { label: "Video",       href: "/streaming/video" },
+      { label: "Asesorías",   href: "/servicios/asesorias" },
+      { label: "Ingeniería",  href: "/servicios/ingenieria" },
+      { label: "Seguridad",   href: "/servicios/seguridad" }
     ]
   },
   {
-    title: "OneServidores",
+    title: "ONESERVIDORES",
     links: [
       { label: "Nosotros",       href: "/nosotros" },
       { label: "Datacenter",     href: "/datacenter" },
       { label: "Soporte",        href: "/soporte" },
       { label: "Contacto",       href: "/contacto" },
-      { label: "Términos y políticas", href: "/legal" }
+      { label: "Legal",          href: "/legal" }
     ]
   }
 ];
 
 export function Footer() {
   return (
-    <footer className="bg-ink-950 text-ink-300">
-      <div className="container py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <footer className="relative bg-void border-t border-white/5">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/50 to-transparent" />
+      <div className="container py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
             <Image src={asset("/logo-white.png")} alt={site.name} width={200} height={50} className="h-9 w-auto" />
-            <p className="mt-5 text-[14px] text-ink-300 leading-relaxed max-w-sm">
+            <p className="mt-6 text-body-sm text-slate leading-relaxed max-w-sm">
               {site.description}
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 text-[12.5px] text-white rounded-full bg-white/5 border border-white/10 px-3 py-1.5">
-              <ShieldCheck size={14} className="text-brand" /> Operación 24×7 — NOC en línea
-            </div>
-            <div className="mt-6 space-y-2 text-[13.5px] text-ink-300">
-              <div className="flex items-start gap-2"><MapPin size={15} className="text-brand mt-0.5" /> {site.contact.address}</div>
+            <div className="mt-6 space-y-2.5 text-body-sm text-bone-white/70">
+              <div className="flex items-start gap-2"><MapPin size={14} className="text-brand mt-0.5" /> {site.contact.address}</div>
               {site.contact.phones.map((p) => (
-                <div key={p} className="flex items-center gap-2"><Phone size={15} className="text-brand" /> {p}</div>
+                <div key={p} className="flex items-center gap-2 font-mono text-[12.5px] tracking-wider"><Phone size={14} className="text-brand" /> {p}</div>
               ))}
-              <div className="flex items-center gap-2"><Mail size={15} className="text-brand" /> {site.contact.email}</div>
+              <div className="flex items-center gap-2 font-mono text-[12.5px]"><Mail size={14} className="text-brand" /> {site.contact.email}</div>
             </div>
           </div>
 
           {cols.map((col) => (
             <div key={col.title} className="lg:col-span-2">
-              <div className="text-[12.5px] uppercase tracking-[0.14em] text-white font-semibold mb-4">
+              <div className="text-[10.5px] font-mono uppercase tracking-[0.18em] text-slate mb-5">
                 {col.title}
               </div>
               <ul className="space-y-2.5">
                 {col.links.map((l) => (
                   <li key={l.label}>
-                    <Link href={l.href} className="text-[14px] text-ink-300 hover:text-brand transition">
+                    <Link href={l.href} className="text-body-sm text-bone-white/80 hover:text-brand transition">
                       {l.label}
                     </Link>
                   </li>
@@ -87,11 +85,11 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 pt-6 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-4">
-          <div className="text-[12.5px] text-ink-400">
-            © {new Date().getFullYear()} {site.name}. Infraestructura que no descansa.
+        <div className="mt-16 pt-6 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-4">
+          <div className="text-[11px] font-mono uppercase tracking-[0.16em] text-slate">
+            © {new Date().getFullYear()} · {site.name} · INFRAESTRUCTURA QUE NO DESCANSA
           </div>
-          <div className="flex items-center gap-3 text-ink-400">
+          <div className="flex items-center gap-3 text-slate">
             <a href={site.social.facebook} aria-label="Facebook" className="hover:text-brand transition"><Facebook size={16} /></a>
             <a href={site.social.twitter}  aria-label="Twitter"  className="hover:text-brand transition"><Twitter  size={16} /></a>
             <a href={site.social.linkedin} aria-label="LinkedIn" className="hover:text-brand transition"><Linkedin size={16} /></a>

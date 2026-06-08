@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://oneservidores.cl"),
   title: {
     default: `${site.name} — Datacenter, VPS, Dedicados y Hosting en Chile`,
-    template: `%s | ${site.name}`
+    template: `%s · ${site.name}`
   },
   description: site.description,
   icons: {
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
-      <body className="bg-white text-ink-900 antialiased">
+    <html lang="es" className="dark">
+      <body className="bg-void text-bone-white antialiased min-h-screen">
         <SmoothScroll />
         <TopBar />
         <Header />
-        <main>{children}</main>
+        <main className="relative">{children}</main>
         <Footer />
       </body>
     </html>
