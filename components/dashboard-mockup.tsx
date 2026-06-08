@@ -6,6 +6,8 @@ import {
   Search, Bell, Plus, ChevronDown, Activity, Globe2,
   LucideIcon
 } from "lucide-react";
+import { Sparkline } from "./sparkline";
+import { ActivityFeed } from "./activity-feed";
 
 /**
  * Dashboard mockup — fake OneServidores admin panel.
@@ -106,16 +108,21 @@ export function DashboardMockup() {
               </div>
             </div>
 
-            {/* Stats row */}
+            {/* Stats row with sparklines */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-              <StatCard label="Uptime mensual" value="99.998%"  trend="+0.002%" Icon={Activity} />
-              <StatCard label="Servidores activos" value="14"    trend="+2 este mes" Icon={Server} />
-              <StatCard label="Tráfico (7d)" value="8.4 TB"      trend="↑ 12%" Icon={Wifi} />
-              <StatCard label="Ahorro vs AWS" value="$1.2M CLP"  trend="este mes" Icon={Globe2} highlight />
+              <StatCard label="Uptime mensual" value="99.998%"  trend="+0.002%" Icon={Activity}
+                sparkData={[99.95, 99.97, 99.98, 99.99, 99.96, 99.98, 99.99]} />
+              <StatCard label="Servidores activos" value="14"    trend="+2 este mes" Icon={Server}
+                sparkData={[8, 9, 9, 10, 11, 12, 12, 13, 14]} />
+              <StatCard label="Tráfico (7d)" value="8.4 TB"      trend="↑ 12%" Icon={Wifi}
+                sparkData={[5.8, 6.2, 6.8, 7.1, 7.4, 7.9, 8.1, 8.4]} />
+              <StatCard label="Ahorro vs AWS" value="$1.2M CLP"  trend="este mes" Icon={Globe2} highlight
+                sparkData={[400, 550, 700, 820, 950, 1050, 1200]} />
             </div>
 
-            {/* Servers table */}
-            <div className="rounded-xl border border-ink-200 overflow-hidden">
+            {/* Two columns: servers table + activity feed */}
+            <div className="grid grid-cols-12 gap-3">
+            <div className="col-span-12 lg:col-span-8 rounded-xl border border-ink-200 overflow-hidden">
               <div className="grid grid-cols-12 gap-3 px-4 py-2.5 border-b border-ink-100 bg-ink-50/60 text-[10.5px] uppercase tracking-wider text-ink-500 font-bold">
                 <div className="col-span-4">Servidor</div>
                 <div className="col-span-2 hidden md:block">Recursos</div>
@@ -132,6 +139,20 @@ export function DashboardMockup() {
               ].map((r) => (
                 <ServerRow key={r.name} {...r} />
               ))}
+            </div>
+
+              {/* Activity feed column */}
+              <div className="col-span-12 lg:col-span-4 rounded-xl border border-ink-200 bg-white p-3">
+                <div className="flex items-center justify-between mb-3 px-1">
+                  <div className="text-[10.5px] uppercase tracking-wider font-bold text-ink-500">
+                    Actividad en vivo
+                  </div>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-soft-orange text-brand text-[9px] font-bold px-1.5 py-0.5 tracking-wider uppercase">
+                    <span className="h-1 w-1 rounded-full bg-brand animate-pulseGlow" /> Live
+                  </span>
+                </div>
+                <ActivityFeed />
+              </div>
             </div>
           </main>
         </div>
@@ -167,13 +188,13 @@ export function DashboardMockup() {
   );
 }
 
-function StatCard({ label, value, trend, Icon, highlight = false }: {
-  label: string; value: string; trend: string; Icon: LucideIcon; highlight?: boolean;
+function StatCard({ label, value, trend, Icon, highlight = false, sparkData }: {
+  label: string; value: string; trend: string; Icon: LucideIcon; highlight?: boolean; sparkData?: number[];
 }) {
   return (
     <div
       className={
-        "rounded-xl border p-3.5 " +
+        "rounded-xl border p-3.5 relative overflow-hidden " +
         (highlight
           ? "border-brand/30 bg-gradient-to-br from-soft-orange to-white"
           : "border-ink-200 bg-white")
@@ -187,6 +208,11 @@ function StatCard({ label, value, trend, Icon, highlight = false }: {
       </div>
       <div className="mt-2 text-[20px] font-extrabold tracking-tight text-ink-900 leading-none">{value}</div>
       <div className="mt-1 text-[11px] text-brand font-semibold">{trend}</div>
+      {sparkData && (
+        <div className="mt-2 -mb-1 -mx-1">
+          <Sparkline data={sparkData} height={28} strokeWidth={1.5} />
+        </div>
+      )}
     </div>
   );
 }
