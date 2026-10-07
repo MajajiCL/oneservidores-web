@@ -1,29 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --color-void: #090909;
-  --color-bone-white: #f7f9fa;
-  --color-ash: #f0f0f0;
-  --color-slate: #6b6b6b;
-  --color-graphite: #454545;
-  --color-smoke: #828384;
-  --color-iron: #333333;
-  --color-cinder: #1a1212;
-  --color-brand: #FF7800;
-  --color-brand-glow: #FFA94D;
+  --color-brand: #FF6B00;
+  --color-brand-hover: #E66000;
 }
 
 html { background: #ffffff; }
 
 html, body {
   background: #ffffff;
-  color: #1e293b;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-  font-feature-settings: "ss01" on, "ss02" on;
+  color: #333333;
+  font-family: 'Raleway', Inter, ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

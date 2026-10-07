@@ -1,196 +1,152 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Linkedin, Twitter, MapPin, Phone, Mail } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Phone, Mail, MapPin, ChevronRight, MessageSquare } from "lucide-react";
 import { site } from "@/lib/site";
-import { asset } from "@/lib/paths";
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#111315] text-gray-300 border-t border-neutral-800">
+    <footer className="bg-white text-gray-600 border-t border-gray-200 text-sm">
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
-          {/* Col 1: Brand & Data Center intro */}
-          <div className="lg:col-span-4 space-y-5">
-            <Image
-              src={asset("/logo-white.png")}
-              alt="OneServidores.com"
-              width={220}
-              height={50}
-              className="h-10 w-auto"
-            />
-            <p className="text-sm text-gray-400 leading-relaxed pr-6">
-              Servicios de Data Center en Chile y Argentina. Conectividad desde 1 GBPS hasta 10 GBPS de Red en tu Servidor con soporte local en Santiago.
+          {/* Column 1: Intro & Socials */}
+          <div className="lg:col-span-4 space-y-4">
+            <p className="text-gray-600 leading-relaxed max-w-sm">
+              Servicios de Data Center en Chile y Argentina. Conectividad desde 1GBPS Hasta 10GBPS de Red en tu Servidor
             </p>
-            <div className="flex items-center gap-3 text-gray-400 pt-2">
+            <div className="flex items-center gap-3 pt-2">
               <a
                 href={site.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-[#FF7800] hover:text-white transition"
+                className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-[#FF6B00] hover:text-[#FF6B00] transition"
               >
-                <Facebook size={16} />
+                <Facebook size={14} />
               </a>
               <a
                 href={site.social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
-                className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-[#FF7800] hover:text-white transition"
+                className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-[#FF6B00] hover:text-[#FF6B00] transition"
               >
-                <Twitter size={16} />
+                <Twitter size={14} />
               </a>
               <a
                 href={site.social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-[#FF7800] hover:text-white transition"
+                className="h-8 w-8 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-[#FF6B00] hover:text-[#FF6B00] transition"
               >
-                <Linkedin size={16} />
+                <Linkedin size={14} />
               </a>
             </div>
           </div>
 
-          {/* Col 2: Link Rápido */}
+          {/* Column 2: Link Rápido */}
           <div className="lg:col-span-2">
-            <h4 className="text-white text-base font-bold mb-4 tracking-tight">
+            <h4 className="text-gray-900 font-bold text-base mb-4">
               Link Rápido
             </h4>
-            <ul className="space-y-2.5 text-sm text-gray-400">
-              <li>
-                <Link href="/" className="hover:text-[#FF7800] transition">
-                  Inicio
-                </Link>
-              </li>
-              <li>
-                <Link href="/nosotros" className="hover:text-[#FF7800] transition">
-                  Nosotros
-                </Link>
-              </li>
-              <li>
-                <Link href="/soporte" className="hover:text-[#FF7800] transition">
-                  Soporte
-                </Link>
-              </li>
-              <li>
-                <Link href="/contacto" className="hover:text-[#FF7800] transition">
-                  Contacto
-                </Link>
-              </li>
-              <li>
-                <Link href="/terminos-condiciones" className="hover:text-[#FF7800] transition">
-                  Términos y condiciones
-                </Link>
-              </li>
-              <li>
-                <Link href="/politica-privacidad" className="hover:text-[#FF7800] transition">
-                  Política de privacidad
-                </Link>
-              </li>
+            <ul className="space-y-2">
+              {[
+                { label: "Inicio", href: "/" },
+                { label: "Nosotros", href: "/nosotros" },
+                { label: "Soporte", href: "/soporte" },
+                { label: "Contacto", href: "/contacto" },
+                { label: "Términos y condiciones", href: "/terminos-condiciones" },
+                { label: "Política de privacidad", href: "/politica-privacidad" }
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#FF6B00] transition flex items-center gap-1.5"
+                  >
+                    <span className="text-[#FF6B00] font-bold text-xs">›</span>
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 3: Servicios */}
+          {/* Column 3: Servicios */}
           <div className="lg:col-span-3">
-            <h4 className="text-white text-base font-bold mb-4 tracking-tight">
+            <h4 className="text-gray-900 font-bold text-base mb-4">
               Servicios
             </h4>
-            <ul className="space-y-2.5 text-sm text-gray-400">
-              <li>
-                <Link href="/hosting/cpanel" className="hover:text-[#FF7800] transition">
-                  Web Hosting cPanel
-                </Link>
-              </li>
-              <li>
-                <Link href="/hosting/reseller" className="hover:text-[#FF7800] transition">
-                  Reseller Web Hosting
-                </Link>
-              </li>
-              <li>
-                <Link href="/colocation" className="hover:text-[#FF7800] transition">
-                  Co-Location / Housing
-                </Link>
-              </li>
-              <li>
-                <Link href="/dedicados" className="hover:text-[#FF7800] transition">
-                  Servidores Dedicados
-                </Link>
-              </li>
-              <li>
-                <Link href="/vps/lxc" className="hover:text-[#FF7800] transition">
-                  Servidores VPS LXC Linux
-                </Link>
-              </li>
-              <li>
-                <Link href="/vps/kvm" className="hover:text-[#FF7800] transition">
-                  Servidores VPS KVM Linux
-                </Link>
-              </li>
-              <li>
-                <Link href="/hosting/wordpress" className="hover:text-[#FF7800] transition">
-                  Servidores VPS WordPress
-                </Link>
-              </li>
+            <ul className="space-y-2">
+              {[
+                { label: "Web Hosting", href: "/hosting/cpanel" },
+                { label: "Reseller Web Hosting", href: "/hosting/reseller" },
+                { label: "Co-Location", href: "/colocation" },
+                { label: "Servidores Dedicados", href: "/dedicados" },
+                { label: "Servidores VPS LXC", href: "/vps/lxc" },
+                { label: "Servidores VPS KVM", href: "/vps/kvm" },
+                { label: "Servidores VPS Wordpress", href: "/hosting/wordpress" }
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#FF6B00] transition flex items-center gap-1.5"
+                  >
+                    <span className="text-[#FF6B00] font-bold text-xs">›</span>
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 4: Contacto */}
-          <div className="lg:col-span-3 space-y-3.5">
-            <h4 className="text-white text-base font-bold mb-4 tracking-tight">
+          {/* Column 4: Contacto */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-gray-900 font-bold text-base mb-4">
               Contacto
             </h4>
-            <div className="space-y-2.5 text-sm text-gray-400">
-              <div className="flex items-center gap-2.5">
-                <Phone size={15} className="text-[#FF7800] shrink-0" />
-                <a href="tel:+56228402574" className="hover:text-white transition">
+            <div className="space-y-2.5">
+              <div className="flex items-center gap-2">
+                <Phone size={14} className="text-[#FF6B00] shrink-0" />
+                <a href="tel:228402574" className="hover:text-[#FF6B00] transition">
                   2 2840 2574
                 </a>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Phone size={15} className="text-[#FF7800] shrink-0" />
-                <a href="https://wa.me/56971550409" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+              <div className="flex items-center gap-2">
+                <MessageSquare size={14} className="text-[#FF6B00] shrink-0" />
+                <a href="https://wa.me/56971550409" target="_blank" rel="noopener noreferrer" className="hover:text-[#FF6B00] transition">
                   +56 9 7155 0409
                 </a>
               </div>
-              <div className="flex items-center gap-2.5">
-                <Mail size={15} className="text-[#FF7800] shrink-0" />
-                <a href="mailto:info@oneservidores.com" className="hover:text-white transition">
+              <div className="flex items-center gap-2">
+                <Mail size={14} className="text-[#FF6B00] shrink-0" />
+                <a href="mailto:info@oneservidores.com" className="hover:text-[#FF6B00] transition">
                   info@oneservidores.com
                 </a>
               </div>
-              <div className="flex items-start gap-2.5 pt-1">
-                <MapPin size={15} className="text-[#FF7800] shrink-0 mt-0.5" />
-                <span>Ahumada 370, Oficina 516, Santiago — Chile</span>
+              <div className="flex items-start gap-2 pt-1">
+                <MapPin size={14} className="text-[#FF6B00] shrink-0 mt-0.5" />
+                <span>Ahumada 370 Oficina 516</span>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-neutral-800 text-xs text-gray-500 font-semibold">
+            <div className="pt-3 text-xs text-gray-500 font-bold">
               By PlusGroup SPA ®
+            </div>
+
+            <div className="pt-1 text-xs text-gray-500 flex items-center gap-2">
+              <span>Selecciona tu país:</span>
+              <span title="Chile">🇨🇱</span>
+              <span title="Argentina">🇦🇷</span>
             </div>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-14 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        {/* Bottom copyright line */}
+        <div className="mt-14 pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
           <div>
             © {new Date().getFullYear()} OneServidores.com · Todos los derechos reservados.
           </div>
-          <div className="flex items-center gap-4">
-            <Link href="/politica-privacidad" className="hover:text-gray-300 transition">
-              Privacidad
-            </Link>
-            <Link href="/terminos-condiciones" className="hover:text-gray-300 transition">
-              Términos
-            </Link>
-            <a
-              href="https://portal.oneservidores.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#FF7800] text-gray-400 font-medium transition"
-            >
-              Portal WHMCS
-            </a>
+          <div>
+            Data Center Tier III en Santiago de Chile
           </div>
         </div>
       </div>

@@ -1,33 +1,33 @@
 "use client";
 
 import { useState } from "react";
-import { Plus, Minus, HelpCircle } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   {
     q: "¿Qué tipo de servidores ofrece su empresa?",
-    a: "En OneServidores ofrecemos una amplia gama de soluciones de infraestructura: Servidores Dedicados con hardware 100% exclusivo, Servidores VPS KVM (con kernel propio), Servidores VPS LXC (contenedores ágiles), VPS optimizados para WordPress (CyberPanel + OpenLiteSpeed), Web Hosting cPanel con LiteSpeed y servicios de Co-Location / Housing en nuestro Data Center en Santiago de Chile."
+    a: "En nuestra empresa, ofrecemos una amplia gama de servidores, incluyendo servidores dedicados, servidores VPS (Servidores Privados Virtuales) y opciones de alojamiento web. Cada tipo de servidor tiene sus propias características y beneficios, diseñados para satisfacer las necesidades únicas de nuestros clientes."
   },
   {
     q: "¿Cuál es la diferencia entre un servidor dedicado y un servidor VPS?",
-    a: "Un Servidor Dedicado es una máquina física completa exclusiva para tu empresa, garantizando el 100% de los recursos de CPU, RAM, discos NVMe/SSD y ancho de banda sin compartirlos con nadie. Un Servidor VPS (Servidor Privado Virtual) es una partición virtual dentro de un servidor de alta potencia que opera de manera autónoma con recursos asignados garantizados, ofreciendo una excelente relación rendimiento-precio y escalabilidad inmediata."
+    a: "Un servidor dedicado es un servidor físico completo dedicado exclusivamente a un solo cliente, lo que garantiza un control total sobre los recursos del servidor. Por otro lado, un servidor VPS es una partición virtual en un servidor físico que actúa como un servidor independiente con sus propios recursos asignados, lo que proporciona una solución más flexible y escalable a un costo más bajo que un servidor dedicado."
   },
   {
     q: "¿Cómo garantizan la seguridad de los servidores y los datos de los clientes?",
-    a: "Implementamos seguridad multicapa: firewall perimetral, protección anti-DDoS activa, sistema de seguridad CpGuard con escaneo de malware en tiempo real, aislamiento seguro con CloudLinux en hosting compartido, copias de seguridad continuas y certificación física en Data Center Tier III con acceso biométrico y vigilancia 24/7."
+    a: "La seguridad de los servidores y los datos de nuestros clientes es una prioridad absoluta para nosotros. Implementamos medidas de seguridad robustas, como firewalls, monitoreo de red en tiempo real, cifrado de datos y políticas de acceso estrictas para proteger los servidores y la información confidencial de nuestros clientes contra amenazas cibernéticas."
   },
   {
-    q: "¿Cuál es la capacidad de escalabilidad de sus servidores si mi empresa crece?",
-    a: "Nuestra infraestructura es 100% elástica. Puedes comenzar con un VPS LXC o KVM básico y aumentar núcleos de vCPU, memoria RAM o espacio SSD en minutos sin necesidad de reinstalar tu sistema operativo ni migrar manualmente de servidor."
+    q: "¿Cuál es la capacidad de escalabilidad de sus servidores en caso de que mi empresa experimente un crecimiento rápido?",
+    a: "Nuestros servidores están diseñados para ser altamente escalables, lo que significa que pueden adaptarse fácilmente a medida que su empresa crece. Ya sea que necesite aumentar la capacidad de almacenamiento, la potencia de procesamiento o la memoria, podemos ajustar rápidamente los recursos de su servidor para satisfacer sus necesidades en evolución, garantizando un rendimiento óptimo en todo momento."
   },
   {
     q: "¿Cuál es la diferencia entre una VPS KVM v/s LXC?",
-    a: "La diferencia radica en el tipo de virtualización: KVM (Kernel-based Virtual Machine) es virtualización completa de hardware, permitiendo kernel propio y cualquier distribución Linux o Windows con aislamiento absoluto. LXC (Linux Containers) utiliza virtualización a nivel de sistema operativo compartiendo el kernel del host, lo que lo hace mucho más ligero, rápido en arranque y eficiente en uso de memoria RAM."
+    a: "KVM utiliza la virtualización completa (también conocida como «virtualización de hardware»), lo que significa que cada VPS funciona como una máquina virtual independiente con su propio kernel y sistema operativo, ofreciendo máxima aislación. LXC, por otro lado, comparte el kernel del sistema operativo host mediante contenedores, haciéndolo más eficiente en uso de memoria RAM y procesamiento."
   }
 ];
 
 export function FaqAccordion() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -37,48 +37,39 @@ export function FaqAccordion() {
     <section className="py-20 bg-white border-b border-gray-200">
       <div className="container max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center space-y-4 mb-14">
-          <span className="text-xs font-black uppercase tracking-widest text-[#FF7800]">
-            RESOLVEMOS TUS DUDAS
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-950 tracking-tight">
+        <div className="text-center space-y-3 mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 tracking-tight">
             Preguntas Frecuentes
           </h2>
-          <p className="text-base sm:text-lg text-gray-600">
-            Encuentra respuestas rápidas a las consultas más comunes sobre nuestros servicios y tecnología.
+          <p className="text-sm sm:text-base text-gray-600">
+            Encuentra respuestas rápidas a las consultas más comunes sobre nuestros servicios.
           </p>
         </div>
 
         {/* Accordion list */}
-        <div className="space-y-4">
+        <div className="space-y-3.5">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
               <div
                 key={i}
-                className="border border-gray-200 rounded-2xl overflow-hidden transition-all duration-200 hover:border-orange-300"
+                className="border border-gray-200 rounded-lg overflow-hidden transition-all bg-white shadow-xs"
               >
                 <button
                   type="button"
                   onClick={() => toggle(i)}
-                  className="w-full p-6 text-left flex items-center justify-between gap-4 bg-white hover:bg-slate-50/70 transition-colors"
+                  className="w-full py-4 px-6 text-left flex items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors"
                 >
-                  <span className="text-base sm:text-lg font-bold text-gray-900">
+                  <span className="text-[15px] font-bold text-gray-800">
                     {faq.q}
                   </span>
-                  <span
-                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-all ${
-                      isOpen
-                        ? "bg-[#FF7800] text-white rotate-180"
-                        : "bg-orange-50 text-[#FF7800]"
-                    }`}
-                  >
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                  <span className="text-[#FF6B00] font-bold shrink-0">
+                    {isOpen ? <Minus size={18} /> : <Plus size={18} />}
                   </span>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 pt-2 text-sm sm:text-base text-gray-600 leading-relaxed bg-white border-t border-gray-100">
+                  <div className="px-6 pb-5 pt-1 text-sm text-gray-600 leading-relaxed border-t border-gray-100">
                     {faq.a}
                   </div>
                 )}

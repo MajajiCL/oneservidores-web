@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Globe, ArrowRight } from "lucide-react";
+import { Search } from "lucide-react";
 
 const domains = [
-  { tld: ".com", price: "$12.900", desc: "El más popular del mundo" },
-  { tld: ".cl", price: "$12.000", desc: "Tu identidad en Chile" },
-  { tld: ".net", price: "$13.900", desc: "Ideal para redes y tecnología" },
-  { tld: ".org", price: "$10.000", desc: "Organizaciones y proyectos" },
-  { tld: ".com.ar", price: "US$ 5.99", desc: "Presencia comercial en Argentina" },
-  { tld: ".ar", price: "US$ 8.99", desc: "Dominio oficial de Argentina" }
+  { tld: ".com", price: "$12.900" },
+  { tld: ".net", price: "$13.900" },
+  { tld: ".org", price: "$10.000" },
+  { tld: ".cl", price: "$12.000" },
+  { tld: ".com.ar", price: "$5.99" },
+  { tld: ".ar", price: "$8.99" }
 ];
 
 export function DomainSearch() {
@@ -26,57 +26,56 @@ export function DomainSearch() {
 
   return (
     <section className="py-20 bg-white border-b border-gray-200">
-      <div className="container">
-        <div className="max-w-4xl mx-auto text-center space-y-4 mb-10">
-          <span className="text-xs font-black uppercase tracking-widest text-[#FF7800]">
-            REGISTRO Y TRANSFERENCIA
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-950 tracking-tight">
-            Dominios Populares
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600">
-            Busca tu próximo dominio y asegúralo al instante con DNS gestionado y protección Whois.
-          </p>
+      <div className="container max-w-4xl mx-auto text-center space-y-4">
+        <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 tracking-tight">
+          Dominios Populares
+        </h2>
+        <p className="text-sm sm:text-base text-gray-600">
+          Busca tu próximo dominio
+        </p>
 
-          {/* Search Box */}
-          <form onSubmit={handleSearch} className="pt-4 max-w-2xl mx-auto">
-            <div className="flex flex-col sm:flex-row items-center gap-2 p-2 bg-slate-50 border-2 border-gray-200 rounded-2xl sm:rounded-full shadow-inner focus-within:border-[#FF7800] transition">
-              <div className="flex items-center gap-3 pl-4 w-full">
-                <Globe size={20} className="text-gray-400" />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Escribe el nombre de tu empresa o idea (ej: miempresa.cl)"
-                  className="w-full bg-transparent py-3 text-sm sm:text-base font-semibold text-gray-900 placeholder:text-gray-400 outline-none"
-                />
-              </div>
-              <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto px-7 py-3 rounded-xl sm:rounded-full bg-[#FF7800] hover:bg-[#E66B00] text-white font-black text-sm uppercase tracking-wider transition shadow-md shadow-orange-500/20"
-                >
-                  Buscar
-                </button>
-              </div>
+        {/* Search input with Search and Transfer buttons */}
+        <form onSubmit={handleSearch} className="pt-4 max-w-2xl mx-auto">
+          <div className="flex flex-col sm:flex-row items-center gap-2 p-1.5 bg-white border-2 border-gray-200 rounded-lg shadow-sm focus-within:border-[#FF6B00] transition">
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Buscar dominio..."
+              className="w-full bg-transparent px-4 py-2.5 text-sm font-semibold text-gray-900 placeholder:text-gray-400 outline-none"
+            />
+            <div className="flex items-center gap-2 w-full sm:w-auto shrink-0">
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-6 py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider transition"
+              >
+                Search
+              </button>
+              <a
+                href="https://portal.oneservidores.com/cart.php?a=add&domain=transfer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-2.5 rounded bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs uppercase tracking-wider transition block text-center"
+              >
+                Transfer
+              </a>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
 
-        {/* TLD cards */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        {/* 6 TLDs Grid */}
+        <div className="pt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {domains.map((d) => (
             <div
               key={d.tld}
-              className="bg-slate-50 rounded-2xl p-5 border border-gray-200 text-center hover:border-orange-300 hover:shadow-md transition group"
+              className="bg-white rounded-xl p-5 border border-gray-200 text-center shadow-xs hover:border-[#FF6B00] hover:shadow-md transition group"
             >
-              <div className="text-2xl font-black text-gray-900 group-hover:text-[#FF7800] transition-colors">
+              <div className="text-xl font-bold text-gray-900 group-hover:text-[#FF6B00] transition-colors">
                 {d.tld}
               </div>
-              <div className="text-lg font-black text-[#FF7800] mt-1">
+              <div className="text-lg font-bold text-[#FF6B00] mt-1">
                 {d.price}
               </div>
-              <div className="text-[11px] text-gray-400 mt-1">/Año + IVA</div>
             </div>
           ))}
         </div>
