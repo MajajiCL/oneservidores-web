@@ -1,61 +1,78 @@
 "use client";
 
+import { Shield, Zap, Headphones, Server, Smartphone, Lock } from "lucide-react";
+
 const features = [
   {
-    title: "Red Segura",
-    desc: "Nuestro equipo de expertos en seguridad cibernética trabaja incansablemente para identificar y neutralizar cualquier riesgo potencial"
+    icon: Shield,
+    title: "Red Segura & Mitigación DDoS",
+    desc: "Filtrado perimetral de tráfico malicioso en tiempo real con monitoreo preventivo y reactivo para mantener tu negocio online ante cualquier ataque."
   },
   {
-    title: "Continuidad Energética",
-    desc: "Nuestro Data Center cuenta con sistema eléctrico redundante, que en caso de fallas seguirá funcionando. También contamos con UPS en cada rack"
+    icon: Zap,
+    title: "Continuidad Energética N+1",
+    desc: "Infraestructura eléctrica redundante con respaldo de UPS por rack y generadores diésel automáticos garantizando 99.85% de operatividad ininterrumpida."
   },
   {
-    title: "Soporte 24/7",
-    desc: "Asistencia técnica disponible en todo momento, todos los días del año, para resolver cualquier problema o inquietud de manera rápida y eficiente"
+    icon: Headphones,
+    title: "Soporte Técnico 24/7 en Español",
+    desc: "Atención técnica especializada todos los días del año a través de tickets, chat directo y WhatsApp para resolver consultas críticas en minutos."
   },
   {
-    title: "Data Center Tier III",
-    desc: "Nuestros servidores se encuentran en Data Center con certificación Tier III con un uptime del 99.85%"
+    icon: Server,
+    title: "Data Center Tier III Certificado",
+    desc: "Servidores alojados en instalaciones Tier III en Santiago y Buenos Aires con climatización controlada y redundancia en todas las capas críticas."
   },
   {
-    title: "Servidor Aplicaciones Móviles",
-    desc: "Levanta tu aplicación en nuestros servicios de VPS y Servidores Dedicados"
+    icon: Smartphone,
+    title: "Ideal para Aplicaciones y APIs",
+    desc: "Despliega entornos para aplicaciones móviles, ecommerce, microservicios Docker o bases de datos de alto rendimiento con latencia mínima."
   },
   {
-    title: "Protección del servidor",
-    desc: "Nuestro sistema permite una protección completa contra los ataques DDoS, con monitoreo preventivo y reactivo"
+    icon: Lock,
+    title: "CpGuard & Protección Integral",
+    desc: "Detección proactiva de virus, exploits y malware a nivel de servidor con aislamiento completo por cuenta mediante CloudLinux."
   }
 ];
 
 export function FeaturesGrid() {
   return (
-    <section className="py-20 bg-white border-b border-gray-200">
+    <section className="py-24 bg-white border-b border-slate-200">
       <div className="container">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 tracking-tight">
-            Características OneServidores.com
+        <div className="max-w-3xl mx-auto text-center space-y-3.5 mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-[#FF6B00] text-xs font-black tracking-widest uppercase">
+            VENTAJAS COMPETITIVAS
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+            ¿Por qué elegir OneServidores?
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-            Ofrecemos una variedad de características diseñadas para satisfacer las necesidades de alojamiento web de manera eficiente y confiable. Con opciones flexibles de almacenamiento, ancho de banda generoso y un equipo de soporte técnico altamente capacitado
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Ofrecemos infraestructura de nivel corporativo adaptada a pymes y empresas en Chile, combinando hardware de alto rendimiento con atención personalizada y humana.
           </p>
         </div>
 
-        {/* 6 Clean Minimalist Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow text-center flex flex-col justify-center min-h-[200px]"
-            >
-              <h3 className="text-lg font-bold text-gray-900 mb-3">
-                {f.title}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                {f.desc}
-              </p>
-            </div>
-          ))}
+        {/* 6 Clean Minimalist Modern Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {features.map((f) => {
+            const Icon = f.icon;
+            return (
+              <div
+                key={f.title}
+                className="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 flex flex-col group"
+              >
+                <div className="h-12 w-12 rounded-xl bg-orange-50 group-hover:bg-[#FF6B00] text-[#FF6B00] group-hover:text-white flex items-center justify-center mb-6 transition-colors shadow-xs">
+                  <Icon size={24} />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover:text-[#FF6B00] transition-colors">
+                  {f.title}
+                </h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-normal">
+                  {f.desc}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

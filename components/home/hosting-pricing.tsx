@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Rocket } from "lucide-react";
+import { Check, ShieldCheck, Zap } from "lucide-react";
 
 interface Plan {
   name: string;
+  badge?: string;
+  popular?: boolean;
   monthlyPrice: string;
   annualPrice: string;
+  annualSavings?: string;
   ssd: string;
   ram: string;
   traffic: string;
@@ -19,51 +22,58 @@ interface Plan {
 const plans: Plan[] = [
   {
     name: "Aprendiz",
-    monthlyPrice: "2200",
-    annualPrice: "12000",
-    ssd: "1 GB Espacio SSD",
+    monthlyPrice: "2.200",
+    annualPrice: "12.000",
+    annualSavings: "Ahorra $14.400",
+    ssd: "1 GB Espacio SSD NVMe",
     ram: "1 GB Memoria RAM",
     traffic: "Transferencia Ilimitada",
-    emails: "Cuentas de correo: 5",
-    mysql: "BD MySQL: 1",
-    subdomains: "Sub Dominios: 2",
-    extraDomains: "Dominios Adicionales: 0"
+    emails: "5 Cuentas de Correo",
+    mysql: "1 Base de Datos MySQL",
+    subdomains: "2 Subdominios",
+    extraDomains: "0 Dominios Adicionales"
   },
   {
     name: "Emprendedor",
-    monthlyPrice: "3900",
-    annualPrice: "26000",
-    ssd: "5 GB Espacio SSD",
+    popular: true,
+    badge: "MÁS POPULAR",
+    monthlyPrice: "3.900",
+    annualPrice: "26.000",
+    annualSavings: "Ahorra $20.800",
+    ssd: "5 GB Espacio SSD NVMe",
     ram: "1.5 GB Memoria RAM",
     traffic: "Transferencia Ilimitada",
-    emails: "Cuentas de correo: 10",
-    mysql: "BD MySQL: 2",
-    subdomains: "Sub Dominios: 4",
-    extraDomains: "Dominios Adicionales: 1"
+    emails: "10 Cuentas de Correo",
+    mysql: "2 Bases de Datos MySQL",
+    subdomains: "4 Subdominios",
+    extraDomains: "1 Dominio Adicional"
   },
   {
     name: "Pyme",
-    monthlyPrice: "4900",
-    annualPrice: "50000",
-    ssd: "20 GB Espacio SSD",
+    monthlyPrice: "4.900",
+    annualPrice: "50.000",
+    annualSavings: "Ahorra $8.800",
+    ssd: "20 GB Espacio SSD NVMe",
     ram: "3 GB Memoria RAM",
     traffic: "Transferencia Ilimitada",
-    emails: "Cuentas de correo: 50",
-    mysql: "BD MySQL: 5",
-    subdomains: "Sub Dominios: 10",
-    extraDomains: "Dominios Adicionales: 2"
+    emails: "50 Cuentas de Correo",
+    mysql: "5 Bases de Datos MySQL",
+    subdomains: "10 Subdominios",
+    extraDomains: "2 Dominios Adicionales"
   },
   {
     name: "Empresa",
-    monthlyPrice: "6700",
-    annualPrice: "70000",
-    ssd: "50 GB Espacio SSD",
+    badge: "MÁXIMA POTENCIA",
+    monthlyPrice: "6.700",
+    annualPrice: "70.000",
+    annualSavings: "Ahorra $10.400",
+    ssd: "50 GB Espacio SSD NVMe",
     ram: "5 GB Memoria RAM",
     traffic: "Transferencia Ilimitada",
-    emails: "Cuentas de correo: ilimitados",
-    mysql: "BD MySQL: 10",
-    subdomains: "Sub Dominios: 10",
-    extraDomains: "Dominios Adicionales: 3"
+    emails: "Cuentas de Correo Ilimitadas",
+    mysql: "10 Bases de Datos MySQL",
+    subdomains: "10 Subdominios",
+    extraDomains: "3 Dominios Adicionales"
   }
 ];
 
@@ -71,107 +81,169 @@ export function HostingPricing() {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
 
   return (
-    <section id="planes-hosting" className="py-20 bg-[#f9f9f9] border-b border-gray-200">
+    <section id="planes-hosting" className="py-24 bg-slate-50 border-b border-slate-200">
       <div className="container">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-950 tracking-tight">
-            Web Hosting Cpanel
+        {/* Header de la sección */}
+        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-14">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-[#FF6B00] text-xs font-black tracking-widest uppercase">
+            PLANES DE WEB HOSTING CPANEL
+          </div>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
+            Alojamiento Web Rápido y Seguro
           </h2>
-          <p className="text-sm sm:text-base text-gray-600">
-            Nuestros planes de WebHosting cuentan con LiteSpeed, Antimalware, Antivirus, Antispam y más.
+          <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
+            Servidores con tecnología <strong className="text-slate-800">LiteSpeed Enterprise</strong>, discos SSD NVMe, aislamiento CloudLinux y protección activa contra malware.
           </p>
 
-          {/* Authentic Switcher [MENSUAL] [ANUAL] */}
+          {/* Toggle Mensual / Anual */}
           <div className="pt-4 flex items-center justify-center">
-            <div className="inline-flex rounded border border-[#FF6B00] overflow-hidden shadow-sm">
+            <div className="inline-flex p-1 rounded-xl bg-slate-200/80 border border-slate-300">
               <button
                 type="button"
                 onClick={() => setBilling("monthly")}
-                className={`px-8 py-2.5 text-xs font-black uppercase tracking-wider transition-all ${
+                className={`px-6 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all ${
                   billing === "monthly"
-                    ? "bg-[#FF6B00] text-white"
-                    : "bg-white text-[#FF6B00] hover:bg-orange-50"
+                    ? "bg-white text-slate-950 shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                MENSUAL
+                Pago Mensual
               </button>
               <button
                 type="button"
                 onClick={() => setBilling("annual")}
-                className={`px-8 py-2.5 text-xs font-black uppercase tracking-wider transition-all border-l border-[#FF6B00] ${
+                className={`px-6 py-2 rounded-lg text-xs font-black uppercase tracking-wider transition-all flex items-center gap-2 ${
                   billing === "annual"
-                    ? "bg-[#FF6B00] text-white"
-                    : "bg-white text-[#FF6B00] hover:bg-orange-50"
+                    ? "bg-[#FF6B00] text-white shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
               >
-                ANUAL
+                <span>Pago Anual</span>
+                <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
+                  billing === "annual" ? "bg-white/20 text-white" : "bg-orange-100 text-[#FF6B00]"
+                }`}>
+                  AHORRA HASTA 50%
+                </span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* 4 Cards Grid (Authentic Hostiko Elementor Styling) */}
+        {/* Grid de 4 Cards Modernas */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {plans.map((p) => {
             const price = billing === "monthly" ? p.monthlyPrice : p.annualPrice;
-            const period = billing === "monthly" ? "/Mensual" : "/Anual";
+            const period = billing === "monthly" ? "/mes" : "/año";
 
             return (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-7 shadow-md border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className={`relative rounded-2xl p-7 flex flex-col justify-between transition-all duration-300 ${
+                  p.popular
+                    ? "bg-white border-2 border-[#FF6B00] shadow-xl shadow-orange-500/10 scale-[1.02] z-10"
+                    : "bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:border-slate-300"
+                }`}
               >
+                {/* Popular Badge Top */}
+                {p.popular && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#FF6B00] text-white text-[11px] font-black uppercase tracking-wider shadow-md">
+                    {p.badge}
+                  </div>
+                )}
+                {!p.popular && p.badge && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-slate-900 text-white text-[10px] font-bold uppercase tracking-wider">
+                    {p.badge}
+                  </div>
+                )}
+
                 <div>
-                  {/* Plan Name in ORANGE */}
-                  <h3 className="text-xl font-bold text-[#FF6B00] mb-2">
+                  {/* Plan Name */}
+                  <h3 className="text-xl font-black text-slate-900 mb-1">
                     {p.name}
                   </h3>
+                  <p className="text-xs text-slate-500 font-medium mb-5">
+                    cPanel + LiteSpeed + SSL
+                  </p>
 
-                  {/* Price in ORANGE */}
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-4">
-                    <span className="text-lg font-bold mr-0.5">$</span>
-                    <span className="text-4xl sm:text-5xl font-black tracking-tight">
-                      {price}
-                    </span>
-                    <span className="text-xs font-bold ml-1 text-[#FF6B00]">
-                      {period}
-                    </span>
+                  {/* Price */}
+                  <div className="pb-5 mb-5 border-b border-slate-100">
+                    <div className="flex items-baseline text-slate-950">
+                      <span className="text-lg font-bold text-slate-500 mr-1">$</span>
+                      <span className="text-4xl font-black tracking-tight">
+                        {price}
+                      </span>
+                      <span className="text-xs font-semibold text-slate-500 ml-1.5">
+                        {period} + IVA
+                      </span>
+                    </div>
+                    {billing === "annual" && p.annualSavings && (
+                      <div className="text-[11px] font-bold text-emerald-600 mt-1">
+                        {p.annualSavings}
+                      </div>
+                    )}
                   </div>
 
-                  {/* Centered Rocket Icon */}
-                  <div className="flex justify-center mb-6">
-                    <div className="h-12 w-12 flex items-center justify-center text-[#FF6B00]">
-                      <Rocket size={32} className="stroke-[1.5]" />
+                  {/* Lista de Especificaciones con Checkmarks */}
+                  <div className="space-y-3 text-xs text-slate-700 pb-6">
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span className="font-semibold text-slate-900">{p.ssd}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span>{p.ram}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span>{p.traffic}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span>{p.emails}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span>{p.mysql}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span>{p.subdomains}</span>
+                    </div>
+                    <div className="flex items-center gap-2.5">
+                      <Check size={16} className="text-[#FF6B00] stroke-[2.5] shrink-0" />
+                      <span>{p.extraDomains}</span>
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-100 space-y-2 text-[11.5px] text-slate-600">
+                      <div className="flex items-center gap-2">
+                        <Check size={14} className="text-emerald-600 stroke-[2.5] shrink-0" />
+                        <span className="font-medium text-slate-800">Certificado SSL Let&apos;s Encrypt Gratis</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check size={14} className="text-emerald-600 stroke-[2.5] shrink-0" />
+                        <span>Múltiples versiones PHP (7.4 a 8.3)</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Check size={14} className="text-emerald-600 stroke-[2.5] shrink-0" />
+                        <span>CpGuard Antivirus & Antimalware</span>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Centered Features in WARM ORANGE */}
-                  <ul className="space-y-2 text-[13.5px] font-medium text-[#E66B00] pb-6 leading-relaxed">
-                    <li>{p.ssd}</li>
-                    <li>{p.ram}</li>
-                    <li>{p.traffic}</li>
-                    <li>{p.emails}</li>
-                    <li>{p.mysql}</li>
-                    <li>{p.subdomains}</li>
-                    <li>{p.extraDomains}</li>
-                    <li className="font-bold text-[#FF6B00]">Certificado SSL Gratis!</li>
-                    <li>Múltiple Versión PHP</li>
-                    <li>CloudLinux Incluido</li>
-                    <li>CpGuard Antimalware</li>
-                    <li>LiteSpeed</li>
-                  </ul>
                 </div>
 
-                {/* Buy Button */}
+                {/* Botón de Compra */}
                 <div className="pt-2">
                   <a
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider block transition shadow"
+                    className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-wider block text-center transition-all ${
+                      p.popular
+                        ? "bg-[#FF6B00] hover:bg-[#E66000] text-white shadow-lg shadow-orange-600/30 hover:-translate-y-0.5"
+                        : "bg-slate-900 hover:bg-slate-800 text-white hover:-translate-y-0.5"
+                    }`}
                   >
-                    COMPRAR AHORA
+                    CONTRATAR PLAN
                   </a>
                 </div>
               </div>
@@ -179,22 +251,17 @@ export function HostingPricing() {
           })}
         </div>
 
-        {/* Footer actions & disclaimer */}
-        <div className="mt-12 text-center space-y-3">
-          <div>
-            <a
-              href="/hosting/cpanel"
-              className="inline-block px-8 py-3 rounded-full bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider transition shadow-md"
-            >
-              Ver más planes de Web Hosting
-            </a>
-          </div>
-          <div className="text-xs text-gray-500 font-medium">
-            Valores expresados Sin IVA
-          </div>
-          <div className="text-xs text-gray-500 font-semibold">
-            *Puedes Adquirir una IP Dedicada por $3.500+iva Mensual
-          </div>
+        {/* Footnote informativo */}
+        <div className="pt-10 text-center text-xs text-slate-500">
+          ¿Tienes dudas sobre qué plan elegir o requieres una migración desde otro proveedor?{" "}
+          <a
+            href="https://wa.me/56971550409"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#FF6B00] font-bold hover:underline"
+          >
+            Habla con un asesor por WhatsApp
+          </a>
         </div>
       </div>
     </section>
