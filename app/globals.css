@@ -17,11 +17,11 @@
   --color-brand-glow: #FFA94D;
 }
 
-html { background: #090909; }
+html { background: #ffffff; }
 
 html, body {
-  background: #090909;
-  color: #f7f9fa;
+  background: #ffffff;
+  color: #1e293b;
   font-family: Inter, ui-sans-serif, system-ui, sans-serif;
   font-feature-settings: "ss01" on, "ss02" on;
   -webkit-font-smoothing: antialiased;

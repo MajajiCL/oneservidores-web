@@ -4,95 +4,193 @@ import { Facebook, Linkedin, Twitter, MapPin, Phone, Mail } from "lucide-react";
 import { site } from "@/lib/site";
 import { asset } from "@/lib/paths";
 
-const cols = [
-  {
-    title: "HOSTING",
-    links: [
-      { label: "Web Hosting cPanel",       href: "/hosting/cpanel" },
-      { label: "High Performance",         href: "/hosting/high-performance" },
-      { label: "Windows · Plesk",          href: "/hosting/windows" },
-      { label: "WordPress · CyberPanel",   href: "/hosting/wordpress" },
-      { label: "Reseller WHM",             href: "/hosting/reseller" },
-      { label: "Dominios",                 href: "/dominios" }
-    ]
-  },
-  {
-    title: "SERVIDORES",
-    links: [
-      { label: "VPS KVM",        href: "/vps/kvm" },
-      { label: "VPS LXC",        href: "/vps/lxc" },
-      { label: "Dedicados",      href: "/dedicados" },
-      { label: "Colocation",     href: "/colocation" }
-    ]
-  },
-  {
-    title: "STREAMING · SERVICIOS",
-    links: [
-      { label: "Audio",       href: "/streaming/audio" },
-      { label: "Video",       href: "/streaming/video" },
-      { label: "Asesorías",   href: "/servicios/asesorias" },
-      { label: "Ingeniería",  href: "/servicios/ingenieria" },
-      { label: "Seguridad",   href: "/servicios/seguridad" }
-    ]
-  },
-  {
-    title: "ONESERVIDORES",
-    links: [
-      { label: "Nosotros",       href: "/nosotros" },
-      { label: "Datacenter",     href: "/datacenter" },
-      { label: "Soporte",        href: "/soporte" },
-      { label: "Contacto",       href: "/contacto" },
-      { label: "Legal",          href: "/legal" }
-    ]
-  }
-];
-
 export function Footer() {
   return (
-    <footer className="relative bg-void border-t border-white/5">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/50 to-transparent" />
-      <div className="container py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-4">
-            <Image src={asset("/logo-white.png")} alt={site.name} width={200} height={50} className="h-9 w-auto" />
-            <p className="mt-6 text-body-sm text-slate leading-relaxed max-w-sm">
-              {site.description}
+    <footer className="relative bg-[#111315] text-gray-300 border-t border-neutral-800">
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+          {/* Col 1: Brand & Data Center intro */}
+          <div className="lg:col-span-4 space-y-5">
+            <Image
+              src={asset("/logo-white.png")}
+              alt="OneServidores.com"
+              width={220}
+              height={50}
+              className="h-10 w-auto"
+            />
+            <p className="text-sm text-gray-400 leading-relaxed pr-6">
+              Servicios de Data Center en Chile y Argentina. Conectividad desde 1 GBPS hasta 10 GBPS de Red en tu Servidor con soporte local en Santiago.
             </p>
-            <div className="mt-6 space-y-2.5 text-body-sm text-bone-white/70">
-              <div className="flex items-start gap-2"><MapPin size={14} className="text-brand mt-0.5" /> {site.contact.address}</div>
-              {site.contact.phones.map((p) => (
-                <div key={p} className="flex items-center gap-2 font-mono text-[12.5px] tracking-wider"><Phone size={14} className="text-brand" /> {p}</div>
-              ))}
-              <div className="flex items-center gap-2 font-mono text-[12.5px]"><Mail size={14} className="text-brand" /> {site.contact.email}</div>
+            <div className="flex items-center gap-3 text-gray-400 pt-2">
+              <a
+                href={site.social.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-[#FF7800] hover:text-white transition"
+              >
+                <Facebook size={16} />
+              </a>
+              <a
+                href={site.social.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+                className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-[#FF7800] hover:text-white transition"
+              >
+                <Twitter size={16} />
+              </a>
+              <a
+                href={site.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="h-9 w-9 rounded-full bg-neutral-800 flex items-center justify-center hover:bg-[#FF7800] hover:text-white transition"
+              >
+                <Linkedin size={16} />
+              </a>
             </div>
           </div>
 
-          {cols.map((col) => (
-            <div key={col.title} className="lg:col-span-2">
-              <div className="text-[10.5px] font-mono uppercase tracking-[0.18em] text-slate mb-5">
-                {col.title}
+          {/* Col 2: Link Rápido */}
+          <div className="lg:col-span-2">
+            <h4 className="text-white text-base font-bold mb-4 tracking-tight">
+              Link Rápido
+            </h4>
+            <ul className="space-y-2.5 text-sm text-gray-400">
+              <li>
+                <Link href="/" className="hover:text-[#FF7800] transition">
+                  Inicio
+                </Link>
+              </li>
+              <li>
+                <Link href="/nosotros" className="hover:text-[#FF7800] transition">
+                  Nosotros
+                </Link>
+              </li>
+              <li>
+                <Link href="/soporte" className="hover:text-[#FF7800] transition">
+                  Soporte
+                </Link>
+              </li>
+              <li>
+                <Link href="/contacto" className="hover:text-[#FF7800] transition">
+                  Contacto
+                </Link>
+              </li>
+              <li>
+                <Link href="/terminos-condiciones" className="hover:text-[#FF7800] transition">
+                  Términos y condiciones
+                </Link>
+              </li>
+              <li>
+                <Link href="/politica-privacidad" className="hover:text-[#FF7800] transition">
+                  Política de privacidad
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 3: Servicios */}
+          <div className="lg:col-span-3">
+            <h4 className="text-white text-base font-bold mb-4 tracking-tight">
+              Servicios
+            </h4>
+            <ul className="space-y-2.5 text-sm text-gray-400">
+              <li>
+                <Link href="/hosting/cpanel" className="hover:text-[#FF7800] transition">
+                  Web Hosting cPanel
+                </Link>
+              </li>
+              <li>
+                <Link href="/hosting/reseller" className="hover:text-[#FF7800] transition">
+                  Reseller Web Hosting
+                </Link>
+              </li>
+              <li>
+                <Link href="/colocation" className="hover:text-[#FF7800] transition">
+                  Co-Location / Housing
+                </Link>
+              </li>
+              <li>
+                <Link href="/dedicados" className="hover:text-[#FF7800] transition">
+                  Servidores Dedicados
+                </Link>
+              </li>
+              <li>
+                <Link href="/vps/lxc" className="hover:text-[#FF7800] transition">
+                  Servidores VPS LXC Linux
+                </Link>
+              </li>
+              <li>
+                <Link href="/vps/kvm" className="hover:text-[#FF7800] transition">
+                  Servidores VPS KVM Linux
+                </Link>
+              </li>
+              <li>
+                <Link href="/hosting/wordpress" className="hover:text-[#FF7800] transition">
+                  Servidores VPS WordPress
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Contacto */}
+          <div className="lg:col-span-3 space-y-3.5">
+            <h4 className="text-white text-base font-bold mb-4 tracking-tight">
+              Contacto
+            </h4>
+            <div className="space-y-2.5 text-sm text-gray-400">
+              <div className="flex items-center gap-2.5">
+                <Phone size={15} className="text-[#FF7800] shrink-0" />
+                <a href="tel:+56228402574" className="hover:text-white transition">
+                  2 2840 2574
+                </a>
               </div>
-              <ul className="space-y-2.5">
-                {col.links.map((l) => (
-                  <li key={l.label}>
-                    <Link href={l.href} className="text-body-sm text-bone-white/80 hover:text-brand transition">
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex items-center gap-2.5">
+                <Phone size={15} className="text-[#FF7800] shrink-0" />
+                <a href="https://wa.me/56971550409" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                  +56 9 7155 0409
+                </a>
+              </div>
+              <div className="flex items-center gap-2.5">
+                <Mail size={15} className="text-[#FF7800] shrink-0" />
+                <a href="mailto:info@oneservidores.com" className="hover:text-white transition">
+                  info@oneservidores.com
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5 pt-1">
+                <MapPin size={15} className="text-[#FF7800] shrink-0 mt-0.5" />
+                <span>Ahumada 370, Oficina 516, Santiago — Chile</span>
+              </div>
             </div>
-          ))}
+
+            <div className="pt-4 border-t border-neutral-800 text-xs text-gray-500 font-semibold">
+              By PlusGroup SPA ®
+            </div>
+          </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-white/5 flex flex-col lg:flex-row items-center justify-between gap-4">
-          <div className="text-[11px] font-mono uppercase tracking-[0.16em] text-slate">
-            © {new Date().getFullYear()} · {site.name} · INFRAESTRUCTURA QUE NO DESCANSA
+        {/* Bottom bar */}
+        <div className="mt-14 pt-6 border-t border-neutral-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+          <div>
+            © {new Date().getFullYear()} OneServidores.com · Todos los derechos reservados.
           </div>
-          <div className="flex items-center gap-3 text-slate">
-            <a href={site.social.facebook} aria-label="Facebook" className="hover:text-brand transition"><Facebook size={16} /></a>
-            <a href={site.social.twitter}  aria-label="Twitter"  className="hover:text-brand transition"><Twitter  size={16} /></a>
-            <a href={site.social.linkedin} aria-label="LinkedIn" className="hover:text-brand transition"><Linkedin size={16} /></a>
+          <div className="flex items-center gap-4">
+            <Link href="/politica-privacidad" className="hover:text-gray-300 transition">
+              Privacidad
+            </Link>
+            <Link href="/terminos-condiciones" className="hover:text-gray-300 transition">
+              Términos
+            </Link>
+            <a
+              href="https://portal.oneservidores.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#FF7800] text-gray-400 font-medium transition"
+            >
+              Portal WHMCS
+            </a>
           </div>
         </div>
       </div>
