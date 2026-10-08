@@ -54,27 +54,27 @@ export function ResellerPricing() {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
 
   return (
-    <section className="relative py-16 bg-white overflow-hidden border-b border-gray-100">
+    <section className="relative py-20 bg-white overflow-hidden border-b border-gray-100">
       <div className="container relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-10">
-          <h2 className="text-[32px] font-bold text-[#1f2937] tracking-tight leading-tight">
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-10">
+          <h2 className="text-[42px] font-semibold text-black tracking-normal leading-tight font-['Jost']">
             Reseller Web Hosting Cpanel
           </h2>
-          <p className="text-[15px] text-gray-500 font-normal">
+          <p className="text-[17px] text-black font-normal tracking-[-0.2px] font-['Jost']">
             Nuestros planes de Reseller WebHosting cuentan con LiteSpeed, Antimalware, Antivirus, Antispam y más.
           </p>
 
           {/* Switcher [MENSUAL] [ANUAL] */}
-          <div className="pt-3 flex items-center justify-center">
-            <div className="inline-flex rounded border border-[#FF6B00] overflow-hidden shadow-xs">
+          <div className="pt-4 flex items-center justify-center">
+            <div className="inline-flex rounded-[3px] border-2 border-[#eee] bg-white overflow-hidden p-0.5">
               <button
                 type="button"
                 onClick={() => setBilling("monthly")}
-                className={`px-7 py-2 text-[11px] font-bold uppercase tracking-wider transition-all ${
+                className={`w-[120px] py-2 text-[12px] font-semibold uppercase tracking-wider font-work-sans transition-all rounded-[2px] ${
                   billing === "monthly"
-                    ? "bg-[#FF6B00] text-white"
-                    : "bg-white text-[#FF6B00] hover:bg-orange-50"
+                    ? "bg-[#FF7800] text-white"
+                    : "bg-white text-[#FF7800] hover:bg-orange-50/50"
                 }`}
               >
                 MENSUAL
@@ -82,10 +82,10 @@ export function ResellerPricing() {
               <button
                 type="button"
                 onClick={() => setBilling("annual")}
-                className={`px-7 py-2 text-[11px] font-bold uppercase tracking-wider transition-all border-l border-[#FF6B00] ${
+                className={`w-[120px] py-2 text-[12px] font-semibold uppercase tracking-wider font-work-sans transition-all rounded-[2px] ${
                   billing === "annual"
-                    ? "bg-[#FF6B00] text-white"
-                    : "bg-white text-[#FF6B00] hover:bg-orange-50"
+                    ? "bg-[#FF7800] text-white"
+                    : "bg-white text-[#FF7800] hover:bg-orange-50/50"
                 }`}
               >
                 ANUAL
@@ -94,7 +94,7 @@ export function ResellerPricing() {
           </div>
         </div>
 
-        {/* 4 Cards Grid con proporciones exactas */}
+        {/* 4 Cards Grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {resellerPlans.map((p) => {
             const price = billing === "monthly" ? p.monthlyPrice : p.annualPrice;
@@ -103,30 +103,30 @@ export function ResellerPricing() {
             return (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-gray-200/40 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  <h3 className="text-[17px] font-semibold text-[#FF6B00] mb-1">
+                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-2">
                     {p.name}
-                  </h3>
+                  </h4>
 
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-3">
-                    <span className="text-[15px] font-semibold mr-0.5">$</span>
-                    <span className="text-[38px] font-bold tracking-tight leading-none">
+                  <div className="flex items-baseline justify-center mb-5">
+                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
+                    <span className="text-[62px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">
                       {price}
                     </span>
-                    <span className="text-[12px] font-medium ml-1 text-[#FF6B00]">
+                    <span className="text-[16px] font-normal text-[#6A8695] font-work-sans ml-1.5">
                       {period}
                     </span>
                   </div>
 
-                  <div className="flex justify-center mb-5">
-                    <div className="h-10 w-10 flex items-center justify-center text-[#FF6B00]">
-                      <Rocket size={28} className="stroke-[1.5]" />
+                  <div className="flex justify-center mb-6">
+                    <div className="h-12 w-12 flex items-center justify-center text-[#FF7800]">
+                      <Rocket size={34} className="stroke-[1.6]" />
                     </div>
                   </div>
 
-                  <ul className="space-y-1.5 text-[13px] font-normal text-[#E66B00] pb-5 leading-normal">
+                  <ul className="space-y-2 text-[18px] font-normal text-[#FF7800] tracking-[-0.2px] font-['Jost'] pb-7 leading-relaxed">
                     <li>{p.ssd}</li>
                     <li>{p.cpanelAccounts}</li>
                     <li>{p.ramPerAccount}</li>
@@ -135,7 +135,7 @@ export function ResellerPricing() {
                     <li>BD MySQL: ilimitadas</li>
                     <li>Sub Dominios: ilimitados</li>
                     <li>Dominios Adicionales: ilimitados</li>
-                    <li className="font-semibold text-[#FF6B00]">Certificado SSL Gratis!</li>
+                    <li className="font-semibold">Certificado SSL Gratis!</li>
                     <li>Múltiple Versión PHP</li>
                     <li>CloudLinux Incluido</li>
                     <li>CpGuard Antimalware</li>
@@ -148,7 +148,7 @@ export function ResellerPricing() {
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[11px] uppercase tracking-wider block transition shadow-xs"
+                    className="w-full h-[40px] flex items-center justify-center rounded-[2px] bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[12px] uppercase tracking-wider font-work-sans transition shadow-sm"
                   >
                     COMPRAR AHORA
                   </a>
@@ -158,7 +158,7 @@ export function ResellerPricing() {
           })}
         </div>
 
-        <div className="pt-8 text-center text-[12px] text-gray-400 leading-relaxed">
+        <div className="pt-10 text-center text-[13px] text-gray-500 font-['Jost']">
           Valores expresados Sin IVA<br />
           *Puedes Adquirir una IP Dedicada por $3.500+iva Mensual
         </div>

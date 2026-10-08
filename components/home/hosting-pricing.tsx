@@ -74,7 +74,7 @@ export function HostingPricing() {
   const [billing, setBilling] = useState<"monthly" | "annual">("monthly");
 
   return (
-    <section id="planes-hosting" className="relative py-16 bg-white overflow-hidden border-b border-gray-100">
+    <section id="planes-hosting" className="relative py-20 bg-white overflow-hidden border-b border-gray-100">
       {/* Background overlay idéntico al de Hostiko Elementor original */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-40">
         <Image
@@ -86,25 +86,25 @@ export function HostingPricing() {
       </div>
 
       <div className="container relative z-10">
-        {/* Section Header con tamaños idénticos a Elementor (h2: 32px) */}
-        <div className="text-center max-w-3xl mx-auto space-y-2.5 mb-10">
-          <h2 className="text-[32px] font-bold text-[#1f2937] tracking-tight leading-tight">
+        {/* Section Header con medidas y fuentes originales exactas: Jost 42px font-weight 600 color #000000 */}
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-10">
+          <h2 className="text-[42px] font-semibold text-black tracking-normal leading-tight font-['Jost']">
             Web Hosting Cpanel
           </h2>
-          <p className="text-[15px] text-gray-500 font-normal">
+          <p className="text-[17px] text-black font-normal tracking-[-0.2px] font-['Jost']">
             Nuestros planes de WebHosting cuentan con LiteSpeed, Antimalware, Antivirus, Antispam y más.
           </p>
 
-          {/* Authentic Switcher [MENSUAL] [ANUAL] */}
-          <div className="pt-3 flex items-center justify-center">
-            <div className="inline-flex rounded border border-[#FF6B00] overflow-hidden shadow-xs">
+          {/* Authentic Switcher [MENSUAL] [ANUAL]: Work Sans 12px font-weight 600 uppercase */}
+          <div className="pt-4 flex items-center justify-center">
+            <div className="inline-flex rounded-[3px] border-2 border-[#eee] bg-white overflow-hidden p-0.5">
               <button
                 type="button"
                 onClick={() => setBilling("monthly")}
-                className={`px-7 py-2 text-[11px] font-bold uppercase tracking-wider transition-all ${
+                className={`w-[120px] py-2 text-[12px] font-semibold uppercase tracking-wider font-work-sans transition-all rounded-[2px] ${
                   billing === "monthly"
-                    ? "bg-[#FF6B00] text-white"
-                    : "bg-white text-[#FF6B00] hover:bg-orange-50"
+                    ? "bg-[#FF7800] text-white"
+                    : "bg-white text-[#FF7800] hover:bg-orange-50/50"
                 }`}
               >
                 MENSUAL
@@ -112,10 +112,10 @@ export function HostingPricing() {
               <button
                 type="button"
                 onClick={() => setBilling("annual")}
-                className={`px-7 py-2 text-[11px] font-bold uppercase tracking-wider transition-all border-l border-[#FF6B00] ${
+                className={`w-[120px] py-2 text-[12px] font-semibold uppercase tracking-wider font-work-sans transition-all rounded-[2px] ${
                   billing === "annual"
-                    ? "bg-[#FF6B00] text-white"
-                    : "bg-white text-[#FF6B00] hover:bg-orange-50"
+                    ? "bg-[#FF7800] text-white"
+                    : "bg-white text-[#FF7800] hover:bg-orange-50/50"
                 }`}
               >
                 ANUAL
@@ -124,7 +124,13 @@ export function HostingPricing() {
           </div>
         </div>
 
-        {/* 4 Cards Grid con tamaños y tipografía exactos */}
+        {/* 4 Cards Grid con las especificaciones exactas:
+            h4: Jost 24px, weight 500, color #263B5E
+            p-price: Jost 62px, weight 500, color #263B5E
+            cal-name: Work Sans 16px, color #6A8695
+            p-list li: Jost 18px, letter-spacing -0.2px, color #FF7800
+            pricing-btn: Work Sans 12px, weight 600, uppercase, height 40px, rounded 2px
+        */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {plans.map((p) => {
             const price = billing === "monthly" ? p.monthlyPrice : p.annualPrice;
@@ -133,34 +139,34 @@ export function HostingPricing() {
             return (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-gray-200/40 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  {/* Plan Name */}
-                  <h3 className="text-[17px] font-semibold text-[#FF6B00] mb-1">
+                  {/* Plan Name: Jost 24px #263B5E */}
+                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-2">
                     {p.name}
-                  </h3>
+                  </h4>
 
-                  {/* Price exacto: 38px, no 60px */}
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-3">
-                    <span className="text-[15px] font-semibold mr-0.5">$</span>
-                    <span className="text-[38px] font-bold tracking-tight leading-none">
+                  {/* Price: Currency $ + Jost 62px #263B5E + Work Sans 16px #6A8695 */}
+                  <div className="flex items-baseline justify-center mb-5">
+                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
+                    <span className="text-[62px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">
                       {price}
                     </span>
-                    <span className="text-[12px] font-medium ml-1 text-[#FF6B00]">
+                    <span className="text-[16px] font-normal text-[#6A8695] font-work-sans ml-1.5">
                       {period}
                     </span>
                   </div>
 
                   {/* Rocket Icon Original */}
-                  <div className="flex justify-center mb-5">
-                    <div className="h-10 w-10 flex items-center justify-center text-[#FF6B00]">
-                      <Rocket size={28} className="stroke-[1.5]" />
+                  <div className="flex justify-center mb-6">
+                    <div className="h-12 w-12 flex items-center justify-center text-[#FF7800]">
+                      <Rocket size={34} className="stroke-[1.6]" />
                     </div>
                   </div>
 
-                  {/* Lista de características: 13px con interlineado natural */}
-                  <ul className="space-y-1.5 text-[13px] font-normal text-[#E66B00] pb-5 leading-normal">
+                  {/* Lista de características: Jost 18px, letter-spacing -0.2px, color #FF7800 */}
+                  <ul className="space-y-2 text-[18px] font-normal text-[#FF7800] tracking-[-0.2px] font-['Jost'] pb-7 leading-relaxed">
                     <li>{p.ssd}</li>
                     <li>{p.ram}</li>
                     <li>{p.traffic}</li>
@@ -168,7 +174,7 @@ export function HostingPricing() {
                     <li>{p.mysql}</li>
                     <li>{p.subdomains}</li>
                     <li>{p.extraDomains}</li>
-                    <li className="font-semibold text-[#FF6B00]">Certificado SSL Gratis!</li>
+                    <li className="font-semibold">Certificado SSL Gratis!</li>
                     <li>Múltiple Versión PHP</li>
                     <li>CloudLinux Incluido</li>
                     <li>CpGuard Antimalware</li>
@@ -176,13 +182,13 @@ export function HostingPricing() {
                   </ul>
                 </div>
 
-                {/* Comprar Ahora */}
+                {/* Comprar Ahora: Work Sans 12px font-weight 600 uppercase */}
                 <div className="pt-2">
                   <a
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[11px] uppercase tracking-wider block transition shadow-xs"
+                    className="w-full h-[40px] flex items-center justify-center rounded-[2px] bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[12px] uppercase tracking-wider font-work-sans transition shadow-sm"
                   >
                     COMPRAR AHORA
                   </a>
@@ -193,14 +199,14 @@ export function HostingPricing() {
         </div>
 
         {/* Botón inferior "Ver más planes de Web Hosting" */}
-        <div className="pt-8 flex flex-col items-center justify-center space-y-2.5">
+        <div className="pt-10 flex flex-col items-center justify-center space-y-3">
           <Link
             href="/hosting"
-            className="px-7 py-2.5 rounded-full bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[13px] transition shadow-md shadow-orange-500/20"
+            className="px-8 py-3 rounded-full bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[14px] font-work-sans transition shadow-md shadow-orange-500/20"
           >
             Ver más planes de Web Hosting
           </Link>
-          <div className="text-[12px] text-gray-400 text-center leading-relaxed">
+          <div className="text-[13px] text-gray-500 text-center font-['Jost']">
             Valores expresados Sin IVA<br />
             *Puedes Adquirir una IP Dedicada por $3.500+iva Mensual
           </div>

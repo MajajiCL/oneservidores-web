@@ -9,27 +9,27 @@ export function VpsFeatured() {
   const [activeTab, setActiveTab] = useState<VpsCategory>("lxc");
 
   return (
-    <section className="py-16 bg-[#fafafa] border-b border-gray-200">
+    <section className="py-20 bg-[#fafafa] border-b border-gray-200">
       <div className="container">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-2 mb-8">
-          <h2 className="text-[32px] font-bold text-[#1f2937] tracking-tight uppercase leading-tight">
+        {/* Section Header: Jost 42px font-weight 600 color #000 */}
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-10">
+          <h2 className="text-[38px] font-semibold text-black tracking-normal uppercase leading-tight font-['Jost']">
             {activeTab === "lxc" && "PLANES VPS LXC DESTACADOS"}
             {activeTab === "kvm" && "PLANES VPS KVM DESTACADOS"}
             {activeTab === "wp" && "PLANES VPS WORDPRESS"}
             {activeTab === "dedicados" && "Servidores Dedicados"}
           </h2>
-          <p className="text-[15px] text-gray-500 font-normal">
+          <p className="text-[17px] text-black font-normal tracking-[-0.2px] font-['Jost']">
             Data Center Tier III en Chile – Baja latencia para sur america
           </p>
           {activeTab === "wp" && (
-            <p className="text-[13px] text-gray-400 font-medium">
+            <p className="text-[14px] text-gray-500 font-medium font-['Jost']">
               Instalación gratuita de CyberPanel y OpenLiteSpeed
             </p>
           )}
 
           {/* Category Switcher Tabs */}
-          <div className="pt-3 flex flex-wrap items-center justify-center gap-2">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-2">
             {[
               { id: "lxc", label: "VPS LXC Linux" },
               { id: "kvm", label: "VPS KVM Linux" },
@@ -40,9 +40,9 @@ export function VpsFeatured() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id as VpsCategory)}
-                className={`px-5 py-2 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all ${
+                className={`px-5 py-2 rounded-full text-[12px] font-semibold uppercase tracking-wider font-work-sans transition-all ${
                   activeTab === tab.id
-                    ? "bg-[#FF6B00] text-white shadow-sm shadow-orange-500/20"
+                    ? "bg-[#FF7800] text-white shadow-md shadow-orange-500/20"
                     : "bg-white text-gray-700 border border-gray-200 hover:border-orange-300"
                 }`}
               >
@@ -86,27 +86,27 @@ export function VpsFeatured() {
             ].map((p) => (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-gray-200/40 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  <h3 className="text-[17px] font-semibold text-[#FF6B00] mb-0.5">
+                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-1">
                     {p.name}
-                  </h3>
-                  <div className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                  </h4>
+                  <div className="text-[12px] text-gray-400 font-semibold uppercase tracking-wider font-work-sans mb-3">
                     INTEL XEON · 1GB NACIONAL E INTERNACIONAL
                   </div>
 
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
-                    <span className="text-[15px] font-semibold mr-0.5">$</span>
-                    <span className="text-[36px] font-bold tracking-tight leading-none">{p.price}</span>
-                    <span className="text-[12px] font-medium ml-1 text-[#FF6B00]">/Mensual</span>
+                  <div className="flex items-baseline justify-center mb-4">
+                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
+                    <span className="text-[54px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">{p.price}</span>
+                    <span className="text-[15px] font-normal text-[#6A8695] font-work-sans ml-1.5">/Mensual</span>
                   </div>
 
-                  <div className="flex justify-center my-3.5">
-                    <Server size={28} className="text-[#FF6B00] stroke-[1.5]" />
+                  <div className="flex justify-center mb-5">
+                    <Server size={32} className="text-[#FF7800] stroke-[1.5]" />
                   </div>
 
-                  <ul className="space-y-1.5 text-[13px] font-normal text-[#E66B00] pb-5 leading-normal">
+                  <ul className="space-y-2 text-[17px] font-normal text-[#FF7800] tracking-[-0.2px] font-['Jost'] pb-7 leading-relaxed">
                     <li>{p.ssd}</li>
                     <li>{p.cpu}</li>
                     <li>{p.ram}</li>
@@ -123,7 +123,7 @@ export function VpsFeatured() {
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[11px] uppercase tracking-wider block transition shadow-xs"
+                    className="w-full h-[40px] flex items-center justify-center rounded-[2px] bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[12px] uppercase tracking-wider font-work-sans transition shadow-sm"
                   >
                     COMPRAR AHORA
                   </a>
@@ -167,27 +167,27 @@ export function VpsFeatured() {
             ].map((p) => (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-gray-200/40 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  <h3 className="text-[17px] font-semibold text-[#FF6B00] mb-0.5">
+                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-1">
                     {p.name}
-                  </h3>
-                  <div className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                  </h4>
+                  <div className="text-[12px] text-gray-400 font-semibold uppercase tracking-wider font-work-sans mb-3">
                     INTEL XEON · 1GB NACIONAL E INTERNACIONAL
                   </div>
 
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
-                    <span className="text-[15px] font-semibold mr-0.5">$</span>
-                    <span className="text-[36px] font-bold tracking-tight leading-none">{p.price}</span>
-                    <span className="text-[12px] font-medium ml-1 text-[#FF6B00]">/Mensual</span>
+                  <div className="flex items-baseline justify-center mb-4">
+                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
+                    <span className="text-[54px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">{p.price}</span>
+                    <span className="text-[15px] font-normal text-[#6A8695] font-work-sans ml-1.5">/Mensual</span>
                   </div>
 
-                  <div className="flex justify-center my-3.5">
-                    <Server size={28} className="text-[#FF6B00] stroke-[1.5]" />
+                  <div className="flex justify-center mb-5">
+                    <Server size={32} className="text-[#FF7800] stroke-[1.5]" />
                   </div>
 
-                  <ul className="space-y-1.5 text-[13px] font-normal text-[#E66B00] pb-5 leading-normal">
+                  <ul className="space-y-2 text-[17px] font-normal text-[#FF7800] tracking-[-0.2px] font-['Jost'] pb-7 leading-relaxed">
                     <li>{p.ssd}</li>
                     <li>{p.cpu}</li>
                     <li>{p.ram}</li>
@@ -204,7 +204,7 @@ export function VpsFeatured() {
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[11px] uppercase tracking-wider block transition shadow-xs"
+                    className="w-full h-[40px] flex items-center justify-center rounded-[2px] bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[12px] uppercase tracking-wider font-work-sans transition shadow-sm"
                   >
                     COMPRAR AHORA
                   </a>
@@ -248,27 +248,27 @@ export function VpsFeatured() {
             ].map((p) => (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-gray-200/40 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  <h3 className="text-[17px] font-semibold text-[#FF6B00] mb-0.5">
+                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-1">
                     {p.name}
-                  </h3>
-                  <div className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                  </h4>
+                  <div className="text-[12px] text-gray-400 font-semibold uppercase tracking-wider font-work-sans mb-3">
                     CYBERPANEL + OPENLITESPEED
                   </div>
 
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
-                    <span className="text-[15px] font-semibold mr-0.5">$</span>
-                    <span className="text-[36px] font-bold tracking-tight leading-none">{p.price}</span>
-                    <span className="text-[12px] font-medium ml-1 text-[#FF6B00]">/Mensual</span>
+                  <div className="flex items-baseline justify-center mb-4">
+                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
+                    <span className="text-[54px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">{p.price}</span>
+                    <span className="text-[15px] font-normal text-[#6A8695] font-work-sans ml-1.5">/Mensual</span>
                   </div>
 
-                  <div className="flex justify-center my-3.5">
-                    <Server size={28} className="text-[#FF6B00] stroke-[1.5]" />
+                  <div className="flex justify-center mb-5">
+                    <Server size={32} className="text-[#FF7800] stroke-[1.5]" />
                   </div>
 
-                  <ul className="space-y-1.5 text-[13px] font-normal text-[#E66B00] pb-5 leading-normal">
+                  <ul className="space-y-2 text-[17px] font-normal text-[#FF7800] tracking-[-0.2px] font-['Jost'] pb-7 leading-relaxed">
                     <li>{p.ssd}</li>
                     <li>{p.cpu}</li>
                     <li>{p.ram}</li>
@@ -285,7 +285,7 @@ export function VpsFeatured() {
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[11px] uppercase tracking-wider block transition shadow-xs"
+                    className="w-full h-[40px] flex items-center justify-center rounded-[2px] bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[12px] uppercase tracking-wider font-work-sans transition shadow-sm"
                   >
                     COMPRAR AHORA
                   </a>
@@ -329,27 +329,27 @@ export function VpsFeatured() {
             ].map((p) => (
               <div
                 key={p.name}
-                className="bg-white rounded-2xl p-6 shadow-md shadow-gray-200/40 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  <h3 className="text-[17px] font-semibold text-[#FF6B00] mb-0.5">
+                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-1">
                     {p.name}
-                  </h3>
-                  <div className="text-[10px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                  </h4>
+                  <div className="text-[12px] text-gray-400 font-semibold uppercase tracking-wider font-work-sans mb-3">
                     HARDWARE DEDICADO EXCLUSIVO
                   </div>
 
-                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
-                    <span className="text-[15px] font-semibold mr-0.5">$</span>
-                    <span className="text-[36px] font-bold tracking-tight leading-none">{p.price}</span>
-                    <span className="text-[12px] font-medium ml-1 text-[#FF6B00]">/Mensual</span>
+                  <div className="flex items-baseline justify-center mb-4">
+                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
+                    <span className="text-[54px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">{p.price}</span>
+                    <span className="text-[15px] font-normal text-[#6A8695] font-work-sans ml-1.5">/Mensual</span>
                   </div>
 
-                  <div className="flex justify-center my-3.5">
-                    <Server size={28} className="text-[#FF6B00] stroke-[1.5]" />
+                  <div className="flex justify-center mb-5">
+                    <Server size={32} className="text-[#FF7800] stroke-[1.5]" />
                   </div>
 
-                  <ul className="space-y-1.5 text-[13px] font-normal text-[#E66B00] pb-5 leading-normal">
+                  <ul className="space-y-2 text-[17px] font-normal text-[#FF7800] tracking-[-0.2px] font-['Jost'] pb-7 leading-relaxed">
                     <li>{p.cpu}</li>
                     <li>{p.ram}</li>
                     <li>{p.storage}</li>
@@ -366,7 +366,7 @@ export function VpsFeatured() {
                     href="https://portal.oneservidores.com/clientarea.php"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2.5 rounded bg-[#FF6B00] hover:bg-[#E66000] text-white font-semibold text-[11px] uppercase tracking-wider block transition shadow-xs"
+                    className="w-full h-[40px] flex items-center justify-center rounded-[2px] bg-[#FF7800] hover:bg-[#E66B00] text-white font-semibold text-[12px] uppercase tracking-wider font-work-sans transition shadow-sm"
                   >
                     COMPRAR AHORA
                   </a>
