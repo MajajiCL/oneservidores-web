@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Server, Cpu, HardDrive, Network, Check } from "lucide-react";
+import { Server } from "lucide-react";
 
 type VpsCategory = "lxc" | "kvm" | "wp" | "dedicados";
 
@@ -9,36 +9,41 @@ export function VpsFeatured() {
   const [activeTab, setActiveTab] = useState<VpsCategory>("lxc");
 
   return (
-    <section className="py-24 bg-slate-50 border-b border-slate-200">
+    <section className="py-20 bg-[#fafafa] border-b border-gray-200">
       <div className="container">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3.5 mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-[#FF6B00] text-xs font-black tracking-widest uppercase">
-            COMPUTO DE ALTO RENDIMIENTO
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight">
-            Servidores VPS & Dedicados
+        <div className="text-center max-w-3xl mx-auto space-y-2 mb-10">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight uppercase">
+            {activeTab === "lxc" && "PLANES VPS LXC DESTACADOS"}
+            {activeTab === "kvm" && "PLANES VPS KVM DESTACADOS"}
+            {activeTab === "wp" && "PLANES VPS WORDPRESS"}
+            {activeTab === "dedicados" && "Servidores Dedicados"}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600">
-            Alojados en Data Center Tier III en Chile con latencia ultra baja para toda Latinoamérica y red simétrica de 1 a 10 Gbps.
+          <p className="text-sm sm:text-base text-gray-600">
+            Data Center Tier III en Chile – Baja latencia para sur america
           </p>
+          {activeTab === "wp" && (
+            <p className="text-xs text-gray-500 font-semibold">
+              Instalación gratuita de CyberPanel y OpenLiteSpeed
+            </p>
+          )}
 
           {/* Category Switcher Tabs */}
           <div className="pt-4 flex flex-wrap items-center justify-center gap-2">
             {[
               { id: "lxc", label: "VPS LXC Linux" },
-              { id: "kvm", label: "VPS KVM Linux (Root)" },
-              { id: "wp", label: "VPS Optimizado WordPress" },
+              { id: "kvm", label: "VPS KVM Linux" },
+              { id: "wp", label: "VPS WordPress" },
               { id: "dedicados", label: "Servidores Dedicados" }
             ].map((tab) => (
               <button
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id as VpsCategory)}
-                className={`px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider transition-all ${
+                className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
                   activeTab === tab.id
-                    ? "bg-[#FF6B00] text-white shadow-md shadow-orange-600/25"
-                    : "bg-white text-slate-700 border border-slate-200 hover:border-slate-300"
+                    ? "bg-[#FF6B00] text-white shadow-md shadow-orange-500/20"
+                    : "bg-white text-gray-700 border border-gray-200 hover:border-orange-300"
                 }`}
               >
                 {tab.label}
@@ -49,100 +54,80 @@ export function VpsFeatured() {
 
         {/* TAB 1: LXC */}
         {activeTab === "lxc" && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
                 name: "PLAN LXC-1",
                 price: "5.000",
-                ssd: "10 GB Disco SSD NVMe",
-                cpu: "1 vCPU Intel Xeon",
-                ram: "1 GB Memoria RAM",
-                traffic: "Transferencia Ilimitada",
-                ips: "1 IPv4 Dedicada + 1 IPv6"
+                ssd: "10 GB Disco SSD",
+                cpu: "1 Vcpu",
+                ram: "1 GB Vcpu",
+                traffic: "Ilimitada Transferencia",
+                ips: "1 IPV4 · 1 IPV6"
               },
               {
                 name: "PLAN LXC-3",
-                popular: true,
                 price: "18.000",
-                ssd: "40 GB Disco SSD NVMe",
-                cpu: "2 vCPU Intel Xeon",
-                ram: "4 GB Memoria RAM",
-                traffic: "Transferencia Ilimitada",
-                ips: "1 IPv4 Dedicada + 1 IPv6"
+                ssd: "40 GB Disco SSD",
+                cpu: "2 Vcpu",
+                ram: "4 GB Ram",
+                traffic: "Ilimitada Transferencia",
+                ips: "1 IPV4 · 1 IPV6"
               },
               {
                 name: "PLAN LXC-8",
                 price: "75.000",
-                ssd: "200 GB Disco SSD NVMe",
-                cpu: "10 vCPU Intel Xeon",
-                ram: "16 GB Memoria RAM",
-                traffic: "Transferencia Ilimitada",
-                ips: "1 IPv4 Dedicada + 1 IPv6"
+                ssd: "200 GB Disco SSD",
+                cpu: "10 Vcpu",
+                ram: "16 GB Ram",
+                traffic: "Ilimitada Transferencia",
+                ips: "1 IPV4 · 1 IPV6"
               }
             ].map((p) => (
               <div
                 key={p.name}
-                className={`relative bg-white rounded-2xl p-7 flex flex-col justify-between transition-all ${
-                  p.popular
-                    ? "border-2 border-[#FF6B00] shadow-xl shadow-orange-500/10 scale-[1.02]"
-                    : "border border-slate-200 shadow-sm hover:shadow-lg"
-                }`}
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
               >
-                {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#FF6B00] text-white text-[10px] font-black tracking-wider uppercase">
-                    MÁS VENDIDO
-                  </div>
-                )}
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 mb-1">{p.name}</h3>
-                  <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                    Contenedor Ultraligero LXC
+                  <h3 className="text-xl font-bold text-[#FF6B00] mb-1">
+                    {p.name}
+                  </h3>
+                  <div className="text-[11px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                    INTEL XEON · 1GB NACIONAL E INTERNACIONAL
                   </div>
 
-                  <div className="pb-5 mb-5 border-b border-slate-100">
-                    <div className="flex items-baseline text-slate-950">
-                      <span className="text-lg font-bold text-slate-500 mr-1">$</span>
-                      <span className="text-4xl font-black tracking-tight">{p.price}</span>
-                      <span className="text-xs font-semibold text-slate-500 ml-1.5">/mes + IVA</span>
-                    </div>
+                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
+                    <span className="text-lg font-bold mr-0.5">$</span>
+                    <span className="text-4xl font-black tracking-tight">{p.price}</span>
+                    <span className="text-xs font-bold ml-1 text-[#FF6B00]">/Mensual</span>
                   </div>
 
-                  <div className="space-y-3 text-xs text-slate-700 pb-6">
-                    <div className="flex items-center gap-2.5">
-                      <HardDrive size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.ssd}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Cpu size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.cpu}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Server size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.ram}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Network size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.traffic}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Check size={15} className="text-emerald-600 stroke-[3] shrink-0" />
-                      <span>{p.ips}</span>
-                    </div>
+                  <div className="flex justify-center my-4">
+                    <Server size={30} className="text-[#FF6B00] stroke-[1.5]" />
                   </div>
+
+                  <ul className="space-y-2 text-[13.5px] font-medium text-[#E66B00] pb-6 leading-relaxed">
+                    <li>{p.ssd}</li>
+                    <li>{p.cpu}</li>
+                    <li>{p.ram}</li>
+                    <li>{p.traffic}</li>
+                    <li>{p.ips}</li>
+                    <li>Virtualización LXC</li>
+                    <li>Bajo Ping en Chile y Sudamérica</li>
+                    <li>Soporte 24/7</li>
+                  </ul>
                 </div>
 
-                <a
-                  href="https://portal.oneservidores.com/clientarea.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-wider block text-center transition-all ${
-                    p.popular
-                      ? "bg-[#FF6B00] hover:bg-[#E66000] text-white shadow-md shadow-orange-600/30"
-                      : "bg-slate-900 hover:bg-slate-800 text-white"
-                  }`}
-                >
-                  CONTRATAR VPS LXC
-                </a>
+                <div className="pt-2">
+                  <a
+                    href="https://portal.oneservidores.com/clientarea.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-md bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider block transition shadow-sm"
+                  >
+                    COMPRAR AHORA
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -150,100 +135,80 @@ export function VpsFeatured() {
 
         {/* TAB 2: KVM */}
         {activeTab === "kvm" && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
                 name: "PLAN KVM-1",
                 price: "9.000",
                 ssd: "20 GB Disco SSD",
-                cpu: "1 vCPU KVM",
-                ram: "1.5 GB RAM Dedicada",
-                traffic: "Transferencia Ilimitada",
+                cpu: "1 Vcpu",
+                ram: "1.5 GB Ram",
+                traffic: "Ilimitada Transferencia",
                 ips: "1 IPV4 · 1 IPV6"
               },
               {
                 name: "PLAN KVM-3",
-                popular: true,
                 price: "32.000",
                 ssd: "60 GB Disco SSD",
-                cpu: "3 vCPU KVM",
-                ram: "6 GB RAM Dedicada",
-                traffic: "Transferencia Ilimitada",
+                cpu: "3 Vcpu",
+                ram: "6 GB Ram",
+                traffic: "Ilimitada Transferencia",
                 ips: "1 IPV4 · 1 IPV6"
               },
               {
                 name: "PLAN KVM-6",
                 price: "68.000",
                 ssd: "140 GB Disco SSD",
-                cpu: "6 vCPU KVM",
-                ram: "14 GB RAM Dedicada",
-                traffic: "Transferencia Ilimitada",
+                cpu: "6 Vcpu",
+                ram: "14 GB Ram",
+                traffic: "Ilimitada Transferencia",
                 ips: "1 IPV4 · 1 IPV6"
               }
             ].map((p) => (
               <div
                 key={p.name}
-                className={`relative bg-white rounded-2xl p-7 flex flex-col justify-between transition-all ${
-                  p.popular
-                    ? "border-2 border-[#FF6B00] shadow-xl shadow-orange-500/10 scale-[1.02]"
-                    : "border border-slate-200 shadow-sm hover:shadow-lg"
-                }`}
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
               >
-                {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#FF6B00] text-white text-[10px] font-black tracking-wider uppercase">
-                    MÁS ELEGIDO
-                  </div>
-                )}
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 mb-1">{p.name}</h3>
-                  <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                    Virtualización Completa KVM · Kernel Propio
+                  <h3 className="text-xl font-bold text-[#FF6B00] mb-1">
+                    {p.name}
+                  </h3>
+                  <div className="text-[11px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                    INTEL XEON · 1GB NACIONAL E INTERNACIONAL
                   </div>
 
-                  <div className="pb-5 mb-5 border-b border-slate-100">
-                    <div className="flex items-baseline text-slate-950">
-                      <span className="text-lg font-bold text-slate-500 mr-1">$</span>
-                      <span className="text-4xl font-black tracking-tight">{p.price}</span>
-                      <span className="text-xs font-semibold text-slate-500 ml-1.5">/mes + IVA</span>
-                    </div>
+                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
+                    <span className="text-lg font-bold mr-0.5">$</span>
+                    <span className="text-4xl font-black tracking-tight">{p.price}</span>
+                    <span className="text-xs font-bold ml-1 text-[#FF6B00]">/Mensual</span>
                   </div>
 
-                  <div className="space-y-3 text-xs text-slate-700 pb-6">
-                    <div className="flex items-center gap-2.5">
-                      <HardDrive size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.ssd}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Cpu size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.cpu}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Server size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.ram}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Network size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.traffic}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Check size={15} className="text-emerald-600 stroke-[3] shrink-0" />
-                      <span>{p.ips}</span>
-                    </div>
+                  <div className="flex justify-center my-4">
+                    <Server size={30} className="text-[#FF6B00] stroke-[1.5]" />
                   </div>
+
+                  <ul className="space-y-2 text-[13.5px] font-medium text-[#E66B00] pb-6 leading-relaxed">
+                    <li>{p.ssd}</li>
+                    <li>{p.cpu}</li>
+                    <li>{p.ram}</li>
+                    <li>{p.traffic}</li>
+                    <li>{p.ips}</li>
+                    <li>Virtualización KVM Completa</li>
+                    <li>Kernel Propio e ISOs Personalizadas</li>
+                    <li>Soporte 24/7</li>
+                  </ul>
                 </div>
 
-                <a
-                  href="https://portal.oneservidores.com/clientarea.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-wider block text-center transition-all ${
-                    p.popular
-                      ? "bg-[#FF6B00] hover:bg-[#E66000] text-white shadow-md shadow-orange-600/30"
-                      : "bg-slate-900 hover:bg-slate-800 text-white"
-                  }`}
-                >
-                  CONTRATAR VPS KVM
-                </a>
+                <div className="pt-2">
+                  <a
+                    href="https://portal.oneservidores.com/clientarea.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-md bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider block transition shadow-sm"
+                  >
+                    COMPRAR AHORA
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -251,7 +216,7 @@ export function VpsFeatured() {
 
         {/* TAB 3: WP */}
         {activeTab === "wp" && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
                 name: "PLAN WP-LXC1",
@@ -264,7 +229,6 @@ export function VpsFeatured() {
               },
               {
                 name: "PLAN WP-LXC2",
-                popular: true,
                 price: "18.000",
                 ssd: "50 GB Disco SSD",
                 cpu: "4 Vcpu",
@@ -284,67 +248,48 @@ export function VpsFeatured() {
             ].map((p) => (
               <div
                 key={p.name}
-                className={`relative bg-white rounded-2xl p-7 flex flex-col justify-between transition-all ${
-                  p.popular
-                    ? "border-2 border-[#FF6B00] shadow-xl shadow-orange-500/10 scale-[1.02]"
-                    : "border border-slate-200 shadow-sm hover:shadow-lg"
-                }`}
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
               >
-                {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#FF6B00] text-white text-[10px] font-black tracking-wider uppercase">
-                    RECOMENDADO WP
-                  </div>
-                )}
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 mb-1">{p.name}</h3>
-                  <div className="text-[11px] font-semibold text-emerald-600 uppercase tracking-wider mb-4">
-                    CyberPanel + OpenLiteSpeed Preinstalado
+                  <h3 className="text-xl font-bold text-[#FF6B00] mb-1">
+                    {p.name}
+                  </h3>
+                  <div className="text-[11px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                    CYBERPANEL + OPENLITESPEED
                   </div>
 
-                  <div className="pb-5 mb-5 border-b border-slate-100">
-                    <div className="flex items-baseline text-slate-950">
-                      <span className="text-lg font-bold text-slate-500 mr-1">$</span>
-                      <span className="text-4xl font-black tracking-tight">{p.price}</span>
-                      <span className="text-xs font-semibold text-slate-500 ml-1.5">/mes + IVA</span>
-                    </div>
+                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
+                    <span className="text-lg font-bold mr-0.5">$</span>
+                    <span className="text-4xl font-black tracking-tight">{p.price}</span>
+                    <span className="text-xs font-bold ml-1 text-[#FF6B00]">/Mensual</span>
                   </div>
 
-                  <div className="space-y-3 text-xs text-slate-700 pb-6">
-                    <div className="flex items-center gap-2.5">
-                      <HardDrive size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.ssd}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Cpu size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.cpu}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Server size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.ram}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Network size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.traffic}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Check size={15} className="text-emerald-600 stroke-[3] shrink-0" />
-                      <span>{p.ips}</span>
-                    </div>
+                  <div className="flex justify-center my-4">
+                    <Server size={30} className="text-[#FF6B00] stroke-[1.5]" />
                   </div>
+
+                  <ul className="space-y-2 text-[13.5px] font-medium text-[#E66B00] pb-6 leading-relaxed">
+                    <li>{p.ssd}</li>
+                    <li>{p.cpu}</li>
+                    <li>{p.ram}</li>
+                    <li>{p.traffic}</li>
+                    <li>{p.ips}</li>
+                    <li>CyberPanel Instalado Gratis</li>
+                    <li>OpenLiteSpeed Cache Activo</li>
+                    <li>Soporte 24/7</li>
+                  </ul>
                 </div>
 
-                <a
-                  href="https://portal.oneservidores.com/clientarea.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-wider block text-center transition-all ${
-                    p.popular
-                      ? "bg-[#FF6B00] hover:bg-[#E66000] text-white shadow-md shadow-orange-600/30"
-                      : "bg-slate-900 hover:bg-slate-800 text-white"
-                  }`}
-                >
-                  CONTRATAR VPS WORDPRESS
-                </a>
+                <div className="pt-2">
+                  <a
+                    href="https://portal.oneservidores.com/clientarea.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-md bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider block transition shadow-sm"
+                  >
+                    COMPRAR AHORA
+                  </a>
+                </div>
               </div>
             ))}
           </div>
@@ -352,100 +297,80 @@ export function VpsFeatured() {
 
         {/* TAB 4: DEDICADOS */}
         {activeTab === "dedicados" && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 max-w-5xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {[
               {
-                name: "DEDICADO ENTRY",
+                name: "PLAN DED-1",
                 price: "99.000",
-                cpu: "Intel Xeon E3-1240v6 (4 Cores / 8 Threads)",
-                ram: "32 GB RAM DDR4 ECC",
-                storage: "2x 500GB SSD Hardware RAID",
-                uplink: "1 Gbps Puerto Dedicado Simétrico",
-                ips: "1 IPv4 Incluida + /64 IPv6"
+                cpu: "Intel Xeon E3-1240v6",
+                ram: "32 GB RAM DDR4",
+                storage: "2x 500GB SSD",
+                traffic: "Puerto 1 Gbps Dedicado",
+                ips: "1 IPV4 · 1 IPV6"
               },
               {
-                name: "DEDICADO POWER",
-                popular: true,
+                name: "PLAN DED-2",
                 price: "169.000",
-                cpu: "AMD EPYC 7302P (16 Cores / 32 Threads)",
-                ram: "64 GB RAM DDR4 ECC Reg",
-                storage: "2x 1TB NVMe Gen4 Enterprise",
-                uplink: "1 Gbps a 10 Gbps Burstable",
-                ips: "2 IPv4 Incluidas + BGP Gratuito"
+                cpu: "AMD EPYC 7302P",
+                ram: "64 GB RAM DDR4",
+                storage: "2x 1TB NVMe",
+                traffic: "Puerto 1 a 10 Gbps",
+                ips: "2 IPV4 · 1 IPV6"
               },
               {
-                name: "DEDICADO ENTERPRISE",
+                name: "PLAN DED-3",
                 price: "289.000",
-                cpu: "Dual Intel Xeon Silver 4214R (24C / 48T)",
-                ram: "128 GB RAM DDR4 ECC Reg",
-                storage: "4x 2TB NVMe Hot-Swap RAID 10",
-                uplink: "10 Gbps Red Dedicada Telxius/Lumen",
-                ips: "5 IPv4 Incluidas + ASN Directo"
+                cpu: "Dual Intel Xeon Silver",
+                ram: "128 GB RAM DDR4",
+                storage: "4x 2TB NVMe RAID",
+                traffic: "Puerto 10 Gbps Telxius",
+                ips: "5 IPV4 · BGP Gratuito"
               }
             ].map((p) => (
               <div
                 key={p.name}
-                className={`relative bg-white rounded-2xl p-7 flex flex-col justify-between transition-all ${
-                  p.popular
-                    ? "border-2 border-[#FF6B00] shadow-xl shadow-orange-500/10 scale-[1.02]"
-                    : "border border-slate-200 shadow-sm hover:shadow-lg"
-                }`}
+                className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-xl transition-shadow text-center"
               >
-                {p.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-[#FF6B00] text-white text-[10px] font-black tracking-wider uppercase">
-                    ALTA DEMANDA
-                  </div>
-                )}
                 <div>
-                  <h3 className="text-xl font-black text-slate-900 mb-1">{p.name}</h3>
-                  <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-4">
-                    Hardware Físico Exclusivo · Tier III Santiago
+                  <h3 className="text-xl font-bold text-[#FF6B00] mb-1">
+                    {p.name}
+                  </h3>
+                  <div className="text-[11px] text-gray-400 font-semibold uppercase tracking-wider mb-2">
+                    HARDWARE DEDICADO EXCLUSIVO
                   </div>
 
-                  <div className="pb-5 mb-5 border-b border-slate-100">
-                    <div className="flex items-baseline text-slate-950">
-                      <span className="text-lg font-bold text-slate-500 mr-1">$</span>
-                      <span className="text-4xl font-black tracking-tight">{p.price}</span>
-                      <span className="text-xs font-semibold text-slate-500 ml-1.5">/mes + IVA</span>
-                    </div>
+                  <div className="flex items-baseline justify-center text-[#FF6B00] mb-1">
+                    <span className="text-lg font-bold mr-0.5">$</span>
+                    <span className="text-4xl font-black tracking-tight">{p.price}</span>
+                    <span className="text-xs font-bold ml-1 text-[#FF6B00]">/Mensual</span>
                   </div>
 
-                  <div className="space-y-3 text-xs text-slate-700 pb-6">
-                    <div className="flex items-center gap-2.5">
-                      <Cpu size={15} className="text-[#FF6B00] shrink-0" />
-                      <span className="font-semibold text-slate-900">{p.cpu}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Server size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.ram}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <HardDrive size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.storage}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Network size={15} className="text-[#FF6B00] shrink-0" />
-                      <span>{p.uplink}</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <Check size={15} className="text-emerald-600 stroke-[3] shrink-0" />
-                      <span>{p.ips}</span>
-                    </div>
+                  <div className="flex justify-center my-4">
+                    <Server size={30} className="text-[#FF6B00] stroke-[1.5]" />
                   </div>
+
+                  <ul className="space-y-2 text-[13.5px] font-medium text-[#E66B00] pb-6 leading-relaxed">
+                    <li>{p.cpu}</li>
+                    <li>{p.ram}</li>
+                    <li>{p.storage}</li>
+                    <li>{p.traffic}</li>
+                    <li>{p.ips}</li>
+                    <li>Enlace Tier III en Chile</li>
+                    <li>Tráfico Ilimitado</li>
+                    <li>Soporte 24/7</li>
+                  </ul>
                 </div>
 
-                <a
-                  href="https://portal.oneservidores.com/clientarea.php"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3 rounded-xl font-black text-xs uppercase tracking-wider block text-center transition-all ${
-                    p.popular
-                      ? "bg-[#FF6B00] hover:bg-[#E66000] text-white shadow-md shadow-orange-600/30"
-                      : "bg-slate-900 hover:bg-slate-800 text-white"
-                  }`}
-                >
-                  CONFIGURAR DEDICADO
-                </a>
+                <div className="pt-2">
+                  <a
+                    href="https://portal.oneservidores.com/clientarea.php"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-2.5 rounded-md bg-[#FF6B00] hover:bg-[#E66000] text-white font-bold text-xs uppercase tracking-wider block transition shadow-sm"
+                  >
+                    COMPRAR AHORA
+                  </a>
+                </div>
               </div>
             ))}
           </div>

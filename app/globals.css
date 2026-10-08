@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Raleway:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -9,96 +9,40 @@
   --color-brand-hover: #E66000;
 }
 
-html { background: #ffffff; }
+html {
+  background: #ffffff;
+  scroll-behavior: smooth;
+}
 
 html, body {
   background: #ffffff;
   color: #333333;
-  font-family: 'Raleway', Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: 'Raleway', 'Montserrat', Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-::selection { background: #FF7800; color: #090909; }
-
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #090909; }
-::-webkit-scrollbar-thumb { background: #333333; border-radius: 6px; }
-::-webkit-scrollbar-thumb:hover { background: #FF7800; }
-
-@layer utilities {
-  /* Editorial italic moment — used sparingly, max one per hero */
-  .font-editorial {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 300;
-    letter-spacing: -0.03em;
-  }
-
-  /* Mono display — airport departure board treatment, 0.20em tracking at large sizes */
-  .font-mono-display {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    letter-spacing: 0.20em;
-    font-weight: 400;
-  }
-
-  /* Outlined / stenciled text */
-  .text-outlined {
-    -webkit-text-stroke: 1px #f0f0f0;
-    color: transparent;
-  }
-
-  /* Glassmorphic panel — primary elevation pattern (no drop shadows) */
-  .glass {
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(20px) saturate(140%);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(255,255,255,0.10);
-  }
-
-  .glass-strong {
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.14);
-  }
-
-  /* Orchid radial ambient */
-  .bg-orchid-radial {
-    background: radial-gradient(circle closest-corner at 10% 50%, rgba(255,120,0,0.45), rgba(0,0,0,0) 55%);
-  }
-
-  .text-gradient-brand {
-    background: linear-gradient(90deg, #FF7800 0%, #FFA94D 50%, #FF7800 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .mask-fade-y {
-    -webkit-mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
-            mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
-  }
-
-  /* Hairline border helper */
-  .border-hairline {
-    border-color: rgba(255,255,255,0.10);
-  }
-
-  /* Brand glow on hover for ghost buttons */
-  .ghost-hover:hover {
-    border-color: #FF7800;
-    box-shadow: 0 0 18px rgba(255,120,0,0.4);
-  }
-
-  /* Soft grid bg for sections (void-friendly) */
-  .bg-grid-void {
-    background-image:
-      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    background-position: -1px -1px;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', 'Montserrat', sans-serif;
+  font-weight: 700;
 }
 
-/* Shimmer keyframes already in tailwind */
+::selection {
+  background: #FF6B00;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
+}
