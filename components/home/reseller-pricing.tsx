@@ -106,16 +106,16 @@ export function ResellerPricing() {
                 className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-2">
+                  <h4 className="text-[24px] font-medium text-[#FF7800] tracking-[-0.5px] font-['Jost'] mb-2">
                     {p.name}
                   </h4>
 
-                  <div className="flex items-baseline justify-center mb-5">
-                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
-                    <span className="text-[62px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">
+                  <div className="flex items-baseline justify-center mb-5 text-[#FF7800]">
+                    <span className="text-[20px] font-medium mr-1">$</span>
+                    <span className="text-[62px] font-medium tracking-tight leading-none font-['Jost']">
                       {price}
                     </span>
-                    <span className="text-[16px] font-normal text-[#6A8695] font-work-sans ml-1.5">
+                    <span className="text-[16px] font-normal font-work-sans ml-1.5 text-[#FF7800]">
                       {period}
                     </span>
                   </div>

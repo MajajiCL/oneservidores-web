@@ -125,9 +125,9 @@ export function HostingPricing() {
         </div>
 
         {/* 4 Cards Grid con las especificaciones exactas:
-            h4: Jost 24px, weight 500, color #263B5E
-            p-price: Jost 62px, weight 500, color #263B5E
-            cal-name: Work Sans 16px, color #6A8695
+            h4: Jost 24px, weight 500, color #FF7800
+            p-price: Jost 62px, weight 500, color #FF7800
+            cal-name: Work Sans 16px, color #FF7800
             p-list li: Jost 18px, letter-spacing -0.2px, color #FF7800
             pricing-btn: Work Sans 12px, weight 600, uppercase, height 40px, rounded 2px
         */}
@@ -142,18 +142,18 @@ export function HostingPricing() {
                 className="bg-white rounded-2xl p-7 shadow-lg shadow-gray-200/50 border border-gray-100 flex flex-col justify-between hover:shadow-2xl transition-shadow text-center"
               >
                 <div>
-                  {/* Plan Name: Jost 24px #263B5E */}
-                  <h4 className="text-[24px] font-medium text-[#263B5E] tracking-[-0.5px] font-['Jost'] mb-2">
+                  {/* Plan Name: Jost 24px #FF7800 */}
+                  <h4 className="text-[24px] font-medium text-[#FF7800] tracking-[-0.5px] font-['Jost'] mb-2">
                     {p.name}
                   </h4>
 
-                  {/* Price: Currency $ + Jost 62px #263B5E + Work Sans 16px #6A8695 */}
-                  <div className="flex items-baseline justify-center mb-5">
-                    <span className="text-[20px] font-medium text-[#263B5E] mr-1">$</span>
-                    <span className="text-[62px] font-medium tracking-tight leading-none text-[#263B5E] font-['Jost']">
+                  {/* Price: Currency $ + Jost 62px #FF7800 + Work Sans 16px #FF7800 */}
+                  <div className="flex items-baseline justify-center mb-5 text-[#FF7800]">
+                    <span className="text-[20px] font-medium mr-1">$</span>
+                    <span className="text-[62px] font-medium tracking-tight leading-none font-['Jost']">
                       {price}
                     </span>
-                    <span className="text-[16px] font-normal text-[#6A8695] font-work-sans ml-1.5">
+                    <span className="text-[16px] font-normal font-work-sans ml-1.5 text-[#FF7800]">
                       {period}
                     </span>
                   </div>
